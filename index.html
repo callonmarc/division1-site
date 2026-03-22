@@ -4,205 +4,136 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Division 1 | Built Different</title>
-  <meta name="description" content="Division 1 is a streetwear label built for late nights, loud fits, and first-place energy.">
+  <meta name="description" content="Division 1 streetwear with a clean four-section layout, mobile-friendly browsing, and an animated chalk-scene background.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <canvas class="scene-canvas" id="scene-canvas" aria-hidden="true"></canvas>
   <div class="page-shell">
-    <div class="noise"></div>
+    <div class="background-vignette" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Division 1 home">
-        <span class="brand-mark">D1</span>
-        <span class="brand-text">Division 1</span>
+      <a class="brand" href="#home" aria-label="Division 1 home">
+        <img class="brand-logo" src="images/division1.jpg" alt="Division 1 logo">
+        <span class="brand-text-wrap">
+          <span class="brand-text">Division 1</span>
+          <span class="brand-subtext">Built Different</span>
+        </span>
       </a>
 
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#drop">Drop</a>
-        <a href="#uniform">Uniform</a>
-        <a href="#story">Story</a>
-        <a href="#contact">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#gallery">Gallery</a>
+        <a class="nav-cta" href="#socials">Socials / Contact</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Streetwear / Chrome Energy / First Place Only</p>
-          <h1>Built Different.<br>Worn Like A Statement.</h1>
+    <main>
+      <section class="section hero-section" id="home">
+        <div class="hero-card panel-card">
+          <p class="eyebrow">Division 1 / First Place Energy</p>
+          <img class="hero-logo" src="images/division1.jpg" alt="Division 1 logo badge">
+          <h1>Built different.</h1>
           <p class="hero-text">
-            Division 1 turns raw pressure into premium uniform. Heavy silhouettes, metallic attitude,
-            and a visual language inspired by your chrome badge logo.
+            A cleaner Division 1 landing page with the logo front and center, fast links to the drop,
+            and a darker chalk-scene background that stays subtle behind the content.
           </p>
-
           <div class="hero-actions">
-            <a class="button button-primary" href="#drop">Shop The Drop</a>
-            <a class="button button-secondary" href="#story">Read The Code</a>
+            <a class="button button-primary" href="#shop">Go To Shop</a>
+            <a class="button button-secondary" href="#gallery">Open Gallery</a>
           </div>
-
-          <div class="hero-meta">
-            <div>
-              <span class="meta-label">Current Mode</span>
-              <strong>Capsule 01</strong>
-            </div>
-            <div>
-              <span class="meta-label">Signature</span>
-              <strong>Chrome Crest</strong>
-            </div>
-            <div>
-              <span class="meta-label">Built For</span>
-              <strong>Daily Rotation</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-orbit"></div>
-          <div class="hero-badge">
-            <div class="badge-ring">
-              <div class="badge-core">
-                <span class="badge-small">DIVISION</span>
-                <span class="badge-number">1</span>
-                <span class="badge-small">BUILT DIFFERENT</span>
-              </div>
-            </div>
-          </div>
-          <div class="floating-tag floating-tag-top">LIMITED</div>
-          <div class="floating-tag floating-tag-bottom">EST. STREET STANDARD</div>
         </div>
       </section>
 
-      <section class="ticker" aria-label="Brand headlines">
-        <div class="ticker-track">
-          <span>DIVISION 1</span>
-          <span>BUILT DIFFERENT</span>
-          <span>CHROME CREST</span>
-          <span>HEAVYWEIGHT ESSENTIALS</span>
-          <span>DIVISION 1</span>
-          <span>BUILT DIFFERENT</span>
-          <span>CHROME CREST</span>
-          <span>HEAVYWEIGHT ESSENTIALS</span>
-        </div>
-      </section>
-
-      <section class="drop-section" id="drop">
+      <section class="section" id="shop">
         <div class="section-heading">
-          <p class="eyebrow">Featured Drop</p>
-          <h2>Core pieces with a sharper silhouette.</h2>
-        </div>
-
-        <div class="product-grid">
-          <article class="product-card product-card-large">
-            <span class="product-tag">Hero Piece</span>
-            <h3>Division 1 Chrome Hoodie</h3>
-            <p>Oversized shape, heavyweight fleece, metallic crest placement, and an all-day drape.</p>
-            <div class="product-footer">
-              <span>Midweight / Boxy Fit</span>
-              <a href="#contact">Notify Me</a>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <span class="product-tag">Essential</span>
-            <h3>League Tee</h3>
-            <p>Clean front. Loud back. Built to layer under flannels, puffers, and stadium jackets.</p>
-            <div class="product-footer">
-              <span>Soft Cotton / Relaxed</span>
-              <a href="#contact">View Piece</a>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <span class="product-tag">Accessory</span>
-            <h3>Metal Badge Cap</h3>
-            <p>Curved peak, tonal crown, reflective crest hit, and a fit made for daily wear.</p>
-            <div class="product-footer">
-              <span>Structured / Adjustable</span>
-              <a href="#contact">View Piece</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="uniform-section" id="uniform">
-        <div class="uniform-panel">
-          <p class="eyebrow">Division Standard</p>
-          <h2>The uniform for people who move like they mean it.</h2>
+          <p class="eyebrow">Shop</p>
+          <h2>Four shirts. Ready for your photos later.</h2>
           <p>
-            The identity pulls from your metallic logo feel: chrome textures, bold contrast, and a
-            disciplined layout that still feels underground.
+            These are blank placeholders for your upcoming shirt images. You can swap in product photos,
+            names, prices, or store links whenever you are ready.
           </p>
         </div>
 
-        <div class="feature-list">
-          <article>
-            <span>01</span>
-            <h3>Heavy Materials</h3>
-            <p>Weight and structure that hold shape and photograph clean in motion.</p>
+        <div class="card-grid shop-grid">
+          <article class="panel-card item-card">
+            <div class="placeholder-box">Shirt 01</div>
+            <h3>Drop Slot 01</h3>
+            <p>Front-facing product photo goes here.</p>
           </article>
-          <article>
-            <span>02</span>
-            <h3>Sharp Branding</h3>
-            <p>Confident marks, disciplined type, and no filler graphics.</p>
+          <article class="panel-card item-card">
+            <div class="placeholder-box">Shirt 02</div>
+            <h3>Drop Slot 02</h3>
+            <p>Alternate product image or colorway goes here.</p>
           </article>
-          <article>
-            <span>03</span>
-            <h3>Built For Mobile</h3>
-            <p>Every section stacks cleanly, keeps contrast high, and stays easy to browse on phones.</p>
+          <article class="panel-card item-card">
+            <div class="placeholder-box">Shirt 03</div>
+            <h3>Drop Slot 03</h3>
+            <p>Use this space for another shirt mockup or detail shot.</p>
+          </article>
+          <article class="panel-card item-card">
+            <div class="placeholder-box">Shirt 04</div>
+            <h3>Drop Slot 04</h3>
+            <p>Reserve this one for another product image when available.</p>
           </article>
         </div>
       </section>
 
-      <section class="story-section" id="story">
+      <section class="section" id="gallery">
         <div class="section-heading">
-          <p class="eyebrow">Brand Code</p>
-          <h2>Division 1 is about pressure, discipline, and presence.</h2>
+          <p class="eyebrow">Gallery</p>
+          <h2>Model shots, behind the scenes, and campaign moments.</h2>
+          <p>
+            This section is set up for future gallery content like model photos, BTS images, launch moments,
+            and creative direction references.
+          </p>
         </div>
 
-        <div class="story-layout">
-          <article class="story-card quote-card">
-            <p class="quote">
-              "Not made to blend in. Made to look like the lead."
-            </p>
+        <div class="card-grid gallery-grid">
+          <article class="panel-card gallery-card gallery-card-wide">
+            <div class="placeholder-box">Feature Gallery Space</div>
+            <h3>Campaign Feature</h3>
+            <p>Main image area for a lead model shot or campaign visual.</p>
           </article>
-
-          <article class="story-card">
-            <h3>Visual Identity</h3>
-            <p>
-              Chrome gradients, blacked-out surfaces, and bold condensed typography create the same
-              impact as your logo without needing the page to feel overdesigned.
-            </p>
+          <article class="panel-card gallery-card">
+            <div class="placeholder-box">Gallery 02</div>
+            <h3>BTS Moment</h3>
+            <p>Use this for behind-the-scenes content or location photos.</p>
           </article>
-
-          <article class="story-card">
-            <h3>Drop Strategy</h3>
-            <p>
-              Small capsules. Clear stories. Fewer pieces with stronger intent. That keeps the brand
-              feeling tight and collectible.
-            </p>
+          <article class="panel-card gallery-card">
+            <div class="placeholder-box">Gallery 03</div>
+            <h3>Street Detail</h3>
+            <p>Great for detail shots, close-ups, or styling references.</p>
           </article>
         </div>
       </section>
 
-      <section class="contact-section" id="contact">
-        <div class="contact-copy">
-          <p class="eyebrow">Stay In Rotation</p>
-          <h2>Be first when the next Division 1 drop lands.</h2>
-          <p>Use this section for email capture, launch notifications, or a store link when you are ready.</p>
-        </div>
+      <section class="section socials-section" id="socials">
+        <div class="panel-card socials-card">
+          <div>
+            <p class="eyebrow">Socials / Contact</p>
+            <h2>Keep the motion going.</h2>
+            <p>
+              Add your Instagram, TikTok, email, or store links here so people know where to find the next drop.
+            </p>
+          </div>
 
-        <form class="contact-form">
-          <label>
-            Email
-            <input type="email" placeholder="you@example.com" aria-label="Email address">
-          </label>
-          <button type="submit" class="button button-primary">Join The List</button>
-        </form>
+          <div class="social-links" aria-label="Social and contact links">
+            <a href="#socials">Instagram</a>
+            <a href="#socials">TikTok</a>
+            <a href="mailto:hello@division1.com">hello@division1.com</a>
+            <a href="#shop">Shop The Drop</a>
+          </div>
+        </div>
       </section>
     </main>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
