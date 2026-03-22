@@ -28,7 +28,8 @@ body {
   min-height: 100vh;
   font-family: "Manrope", sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 24%), linear-gradient(180deg, #040404 0%, #0a0a0a 100%);
+  background: linear-gradient(180deg, #040404 0%, #0a0a0a 100%);
+  overflow-x: hidden;
 }
 
 a {
@@ -41,28 +42,95 @@ img {
   max-width: 100%;
 }
 
-.scene-canvas,
+.background-image,
+.lightning-layer,
 .page-overlay {
   position: fixed;
   inset: 0;
 }
 
-.scene-canvas {
+.background-image {
   z-index: 0;
-  opacity: 0.88;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.48)),
+    url("images/background.png") center center / cover no-repeat;
+  transform: scale(1.04);
+  filter: saturate(0.84) brightness(0.56) contrast(1.08);
+}
+
+.lightning-layer {
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lightning-layer::before,
+.lightning-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.lightning-layer::before {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(175, 216, 255, 0.22), transparent 24%),
+    radial-gradient(circle at 82% 28%, rgba(175, 216, 255, 0.18), transparent 22%),
+    radial-gradient(circle at 54% 14%, rgba(255, 255, 255, 0.12), transparent 18%);
+  animation: skyPulse 9s linear infinite;
+}
+
+.lightning-layer::after {
+  background: linear-gradient(180deg, rgba(180, 220, 255, 0.12), transparent 40%);
+  mix-blend-mode: screen;
+  animation: flashWash 7s linear infinite;
+}
+
+.lightning-bolt {
+  position: absolute;
+  width: clamp(180px, 22vw, 340px);
+  height: clamp(260px, 48vh, 520px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(220, 240, 255, 0.95) 16%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  clip-path: polygon(48% 0%, 66% 0%, 54% 22%, 76% 22%, 44% 55%, 58% 55%, 28% 100%, 40% 68%, 22% 68%);
+  filter: drop-shadow(0 0 12px rgba(194, 225, 255, 0.9)) drop-shadow(0 0 34px rgba(132, 188, 255, 0.55));
+  opacity: 0;
+  transform-origin: top center;
+}
+
+.bolt-one {
+  top: -2%;
+  left: 10%;
+  animation: lightningStrikeOne 8s infinite;
+}
+
+.bolt-two {
+  top: 4%;
+  right: 14%;
+  animation: lightningStrikeTwo 11s infinite;
+}
+
+.bolt-three {
+  top: -3%;
+  left: 48%;
+  animation: lightningStrikeThree 13s infinite;
 }
 
 .page-overlay {
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 34%, rgba(0, 0, 0, 0.84) 0%, rgba(0, 0, 0, 0.66) 16%, rgba(0, 0, 0, 0.22) 32%, rgba(0, 0, 0, 0.08) 56%, rgba(0, 0, 0, 0.03) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.48));
+    radial-gradient(circle at 50% 34%, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.58) 18%, rgba(0, 0, 0, 0.24) 34%, rgba(0, 0, 0, 0.1) 58%, rgba(0, 0, 0, 0.05) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.56));
 }
 
 .page-shell {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: min(calc(100% - 32px), var(--site-width));
   margin: 0 auto;
   padding: 24px 0 56px;
@@ -326,6 +394,57 @@ p {
   padding: 24px;
 }
 
+@keyframes skyPulse {
+  0%, 16%, 19%, 100% {
+    opacity: 0;
+  }
+  17%, 18% {
+    opacity: 1;
+  }
+}
+
+@keyframes flashWash {
+  0%, 20%, 22%, 48%, 50%, 100% {
+    opacity: 0;
+  }
+  21%, 49% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes lightningStrikeOne {
+  0%, 10%, 11%, 100% {
+    opacity: 0;
+    transform: translateY(-10px) scaleY(0.92);
+  }
+  10.2%, 10.7% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes lightningStrikeTwo {
+  0%, 36%, 37%, 100% {
+    opacity: 0;
+    transform: translateY(-14px) scaleY(0.9);
+  }
+  36.2%, 36.5%, 36.8% {
+    opacity: 0.95;
+    transform: translateY(0) scaleY(1.04);
+  }
+}
+
+@keyframes lightningStrikeThree {
+  0%, 62%, 63%, 100% {
+    opacity: 0;
+    transform: translateY(-12px) scaleY(0.88);
+  }
+  62.1%, 62.35% {
+    opacity: 0.9;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
 @media (max-width: 980px) {
   .product-grid,
   .contact-grid,
@@ -356,6 +475,11 @@ p {
   .hero-home {
     min-height: calc(100vh - 190px);
     padding: 36px 18px;
+  }
+
+  .lightning-bolt {
+    width: clamp(130px, 30vw, 220px);
+    height: clamp(180px, 34vh, 300px);
   }
 
   .page-intro,
