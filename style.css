@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+header {
+  padding: 50px;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid white;
+  padding: 20px;
+}
