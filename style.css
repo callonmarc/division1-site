@@ -26,7 +26,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  font-family: "Manrope", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--text);
   background: linear-gradient(180deg, #040404 0%, #0a0a0a 100%);
   overflow-x: hidden;
@@ -231,13 +231,13 @@ img {
 .gallery-card span,
 .price-text {
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
 }
 
 .brand-mark,
 h1,
 h2 {
-  font-family: "Antonio", Impact, sans-serif;
+  font-family: "Bebas Neue", Impact, sans-serif;
 }
 
 .brand-logo {
@@ -254,6 +254,9 @@ h2 {
   align-items: center;
   min-height: 44px;
   font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.18em;
 }
 
 .site-nav {
@@ -268,7 +271,10 @@ h2 {
   border: 1px solid transparent;
   border-radius: 999px;
   color: var(--muted);
+  font-family: "Montserrat", sans-serif;
   font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
@@ -300,7 +306,10 @@ main {
 .eyebrow {
   margin: 0 0 16px;
   color: var(--muted);
+  font-family: "Montserrat", sans-serif;
   font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
 }
 
 .hero-logo {
@@ -320,10 +329,15 @@ h2 {
 
 h1 {
   font-size: clamp(3.6rem, 11vw, 7rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.24), 0 0 28px rgba(255, 255, 255, 0.12);
 }
 
 h2 {
   font-size: clamp(1.5rem, 4vw, 2.3rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
 }
 
 p {
@@ -353,7 +367,10 @@ p {
   padding: 0 24px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
@@ -635,6 +652,14 @@ p {
   .hero-home {
     min-height: calc(100vh - 190px);
     padding: 36px 18px;
+  }
+
+  h1 {
+    letter-spacing: 0.06em;
+  }
+
+  h2 {
+    letter-spacing: 0.05em;
   }
 
   .lightning-bolt {
