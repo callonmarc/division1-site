@@ -3,187 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Division 1 | Built Different</title>
-  <meta name="description" content="Division 1 delivers statement streetwear with a cleaner, mobile-first shopping experience.">
+  <title>Division 1 | Home</title>
+  <meta name="description" content="Division 1 home page with a dark minimal streetwear aesthetic and animated chalk-scene background.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-page="home">
+  <canvas class="scene-canvas" aria-hidden="true"></canvas>
+  <div class="page-overlay"></div>
   <div class="page-shell">
-    <div class="noise"></div>
-
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Division 1 home">
-        <img class="brand-logo" src="images/division1.jpg" alt="Division 1 logo">
-        <span class="brand-text-wrap">
-          <span class="brand-text">Division 1</span>
-          <span class="brand-subtext">Built Different</span>
-        </span>
+      <a class="brand" href="index.html" aria-label="Division 1 home">
+        <span class="brand-mark">Division 1</span>
       </a>
 
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#shop">Shop</a>
-        <a href="#highlights">Why It Hits</a>
-        <a href="#about">About</a>
-        <a class="nav-cta" href="#contact">Join Waitlist</a>
+        <a class="is-active" href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="socials.html">Socials / Contact</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero" id="shop">
-        <div class="hero-copy">
-          <p class="eyebrow">Streetwear / Chrome Energy / Mobile-First</p>
-          <h1>Your next fit, without the endless scroll.</h1>
-          <p class="hero-text">
-            We simplified the Division 1 experience so people can land, understand the brand, and get to the drop fast.
-            The new layout keeps the focus on your logo, key pieces, and the actions that matter most.
-          </p>
-
+    <main>
+      <section class="hero hero-home">
+        <div class="hero-focus">
+          <p class="eyebrow">Streetwear / minimal / late-night energy</p>
+          <img class="hero-logo" src="images/division1.jpg" alt="Division 1 logo">
+          <h1>Division 1</h1>
+          <p class="hero-text">Dark, stripped-back, and built to keep the logo at the center while the rest of the site stays clean and easy to move through.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#featured">Shop Featured Pieces</a>
-            <a class="button button-secondary" href="#about">See Brand Story</a>
-          </div>
-
-          <div class="hero-meta">
-            <div>
-              <span class="meta-label">Current Drop</span>
-              <strong>Capsule 01</strong>
-            </div>
-            <div>
-              <span class="meta-label">Best For</span>
-              <strong>Daily Rotation</strong>
-            </div>
-            <div>
-              <span class="meta-label">Shopping Feel</span>
-              <strong>Quick + Clean</strong>
-            </div>
+            <a class="button button-primary" href="shop.html">Enter Shop</a>
+            <a class="button button-secondary" href="gallery.html">View Gallery</a>
           </div>
         </div>
-
-        <div class="hero-visual">
-          <div class="hero-panel">
-            <div class="hero-logo-wrap">
-              <img class="hero-logo" src="images/division1.jpg" alt="Division 1 chrome badge logo">
-            </div>
-
-            <div class="hero-card-stack" aria-label="Division 1 highlights">
-              <article class="mini-card">
-                <span class="mini-card-label">Fast Browse</span>
-                <strong>Top actions show first on every screen.</strong>
-              </article>
-              <article class="mini-card">
-                <span class="mini-card-label">Clear Drop Focus</span>
-                <strong>Featured products come before supporting content.</strong>
-              </article>
-              <article class="mini-card">
-                <span class="mini-card-label">Mobile Ready</span>
-                <strong>Cards stack cleanly with thumb-friendly buttons.</strong>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="highlights-section" id="highlights">
-        <article class="highlight-intro panel-card">
-          <p class="eyebrow">Quick Look</p>
-          <h2>Everything important, right up front.</h2>
-          <p>
-            Instead of long sections and extra filler, the homepage now gives visitors a short path:
-            understand the brand, preview the best pieces, and join the list.
-          </p>
-        </article>
-
-        <div class="highlight-grid">
-          <article class="panel-card feature-card">
-            <span>01</span>
-            <h3>Cleaner navigation</h3>
-            <p>Simple links and one strong call-to-action make the homepage easier to use.</p>
-          </article>
-          <article class="panel-card feature-card">
-            <span>02</span>
-            <h3>Better on phones</h3>
-            <p>Responsive spacing, stacked cards, and readable type improve the mobile experience.</p>
-          </article>
-          <article class="panel-card feature-card">
-            <span>03</span>
-            <h3>Less scrolling</h3>
-            <p>Several sections were condensed into a tighter layout that still keeps the brand feel.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="featured-section" id="featured">
-        <div class="section-heading">
-          <p class="eyebrow">Featured Drop</p>
-          <h2>Core pieces at a glance.</h2>
-        </div>
-
-        <div class="product-grid">
-          <article class="product-card product-card-large">
-            <span class="product-tag">Hero Piece</span>
-            <h3>Division 1 Chrome Hoodie</h3>
-            <p>Oversized fit, heavyweight feel, and signature chrome branding for the main statement piece.</p>
-            <div class="product-footer">
-              <span>Heavyweight / Boxy Fit</span>
-              <a href="#contact">Notify Me</a>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <span class="product-tag">Essential</span>
-            <h3>League Tee</h3>
-            <p>Layer-friendly, relaxed, and easy to wear as an everyday uniform staple.</p>
-            <div class="product-footer">
-              <span>Soft Cotton / Relaxed</span>
-              <a href="#contact">View Piece</a>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <span class="product-tag">Accessory</span>
-            <h3>Metal Badge Cap</h3>
-            <p>Reflective crest detail and a structured fit that keeps the brand visible on the move.</p>
-            <div class="product-footer">
-              <span>Structured / Adjustable</span>
-              <a href="#contact">View Piece</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="about-contact-section" id="about">
-        <article class="panel-card about-card">
-          <p class="eyebrow">Brand Code</p>
-          <h2>Sharp identity. Faster experience.</h2>
-          <p>
-            Division 1 still feels bold and premium, but the page now gets out of the way. The chrome logo takes the lead,
-            the drop is easier to scan, and the content is trimmed down so visitors can move quickly.
-          </p>
-          <ul class="about-list">
-            <li>Logo-forward branding in the header and hero</li>
-            <li>Compact content blocks instead of long sections</li>
-            <li>Simple path from landing to action</li>
-          </ul>
-        </article>
-
-        <article class="panel-card contact-card" id="contact">
-          <p class="eyebrow">Stay In Rotation</p>
-          <h2>Be first for the next drop.</h2>
-          <p>Use this area for email capture, a Shopify link, or your next launch announcement.</p>
-
-          <form class="contact-form">
-            <label>
-              Email
-              <input type="email" placeholder="you@example.com" aria-label="Email address">
-            </label>
-            <button type="submit" class="button button-primary">Join The List</button>
-          </form>
-        </article>
       </section>
     </main>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
