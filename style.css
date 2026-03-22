@@ -56,8 +56,8 @@ img {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 32%, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.84) 18%, rgba(0, 0, 0, 0.48) 34%, rgba(0, 0, 0, 0.14) 62%, rgba(0, 0, 0, 0.08) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.7));
+    radial-gradient(circle at 50% 32%, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.72) 18%, rgba(0, 0, 0, 0.28) 34%, rgba(0, 0, 0, 0.08) 62%, rgba(0, 0, 0, 0.03) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.56));
 }
 
 .page-shell {
@@ -74,6 +74,12 @@ img {
   justify-content: space-between;
   gap: 20px;
   padding: 4px 0 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .brand-mark,
@@ -93,14 +99,19 @@ h2 {
   font-family: "Antonio", Impact, sans-serif;
 }
 
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.32);
+}
+
 .brand-mark {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  padding: 0 16px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
   font-size: 1rem;
 }
 
@@ -133,23 +144,11 @@ main {
   gap: 28px;
 }
 
-.hero,
-.page-intro,
-.product-card,
-.gallery-card,
-.contact-card {
-  border: 1px solid var(--line);
-  background: var(--bg-panel);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
-}
-
 .hero-home {
   min-height: calc(100vh - 144px);
   display: grid;
   place-items: center;
   padding: 42px 24px;
-  border-radius: calc(var(--radius-lg) + 8px);
 }
 
 .hero-focus {
@@ -238,8 +237,7 @@ p {
 .page-intro {
   display: grid;
   gap: 14px;
-  padding: 30px;
-  border-radius: var(--radius-lg);
+  padding: 18px 0 10px;
 }
 
 .page-intro h1 {
@@ -261,6 +259,9 @@ p {
 .contact-card,
 .gallery-card {
   border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: rgba(5, 5, 5, 0.34);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
 }
 
 .product-card {
@@ -303,8 +304,8 @@ p {
   padding: 20px;
   border: 1px dashed var(--line-strong);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
-    rgba(17, 17, 17, 0.72);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+    rgba(5, 5, 5, 0.22);
 }
 
 .gallery-card-tall {
@@ -361,6 +362,11 @@ p {
   .product-card,
   .contact-card {
     padding: 20px;
+  }
+
+  .page-intro {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .product-grid,
