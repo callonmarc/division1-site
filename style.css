@@ -341,9 +341,13 @@ p {
   min-height: 320px;
 }
 
-.item-card p,
-.gallery-card p {
+.item-price {
   margin-top: 10px;
+  color: var(--text);
+  opacity: 0.72;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
 }
 
 .socials-card {
@@ -360,11 +364,24 @@ p {
 }
 
 .social-links a {
+  display: grid;
+  gap: 4px;
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 16px;
   color: var(--text);
   transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.social-label {
+  font-family: "Antonio", Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.social-hint {
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 @media (max-width: 1080px) {
