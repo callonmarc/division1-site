@@ -292,7 +292,7 @@ h2 {
 main {
   display: grid;
   flex: 1;
-  gap: 28px;
+  gap: 18px;
 }
 
 .hero-home {
@@ -300,15 +300,15 @@ main {
   flex: 1;
   display: grid;
   place-items: center;
-  padding: 8px 24px 12px;
+  padding: 0 24px 6px;
 }
 
 .hero-focus {
   width: min(100%, 760px);
   display: grid;
   justify-items: center;
-  align-content: center;
-  gap: 10px;
+  align-content: start;
+  gap: 8px;
   text-align: center;
 }
 
@@ -324,8 +324,8 @@ main {
 .hero-artwork {
   position: relative;
   width: min(100%, 760px);
-  min-height: clamp(540px, 76vh, 760px);
-  padding: 28px 0;
+  min-height: clamp(500px, 72vh, 720px);
+  padding: 12px 0;
   display: grid;
   place-items: center;
   isolation: isolate;
@@ -334,7 +334,7 @@ main {
 .hero-image {
   position: relative;
   z-index: 2;
-  width: min(100%, 360px);
+  width: min(100%, 332px);
   margin: 0 auto;
   border-radius: 0;
   border: 0;
@@ -351,8 +351,8 @@ main {
 }
 
 .hero-background-top {
-  top: -8px;
-  width: min(84%, 280px);
+  top: -12px;
+  width: min(88%, 320px);
 }
 
 .hero-background-bottom {
@@ -698,26 +698,31 @@ p {
   }
 
   .hero-home {
-    padding: 4px 18px 12px;
+    padding: 0 14px 4px;
+    align-items: start;
+  }
+
+  .hero-focus {
+    gap: 6px;
   }
 
   .hero-artwork {
-    min-height: clamp(460px, 66vh, 600px);
-    padding: 18px 0;
+    min-height: clamp(380px, 56vh, 520px);
+    padding: 6px 0 0;
   }
 
   .hero-image {
-    width: min(100%, 280px);
+    width: min(100%, 240px);
   }
 
   .hero-background-top {
-    top: -6px;
-    width: min(82%, 200px);
+    top: -10px;
+    width: min(96vw, 340px);
   }
 
   .hero-background-bottom {
-    bottom: -8px;
-    width: min(100%, 460px);
+    bottom: -2px;
+    width: min(108%, 420px);
   }
 
   h1 {
