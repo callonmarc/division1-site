@@ -28,7 +28,7 @@ body {
   min-height: 100vh;
   font-family: "Montserrat", sans-serif;
   color: var(--text);
-  background: linear-gradient(180deg, #040404 0%, #0a0a0a 100%);
+  background-color: #040404;
   overflow-x: hidden;
 }
 
@@ -52,10 +52,20 @@ img {
 .background-image {
   z-index: 0;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.48)),
-    url("images/background.png") center center / cover no-repeat;
-  transform: scale(1.04);
-  filter: saturate(0.84) brightness(0.56) contrast(1.08);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+    url("images/top.png") center clamp(56px, 11vh, 112px) / min(1000px, 100vw) auto no-repeat,
+    url("images/bottom.png") center calc(100% - clamp(48px, 10vh, 110px)) / min(1000px, 100vw) auto no-repeat;
+  filter: saturate(0.92) brightness(0.72) contrast(1.04);
+}
+
+
+@media (max-width: 700px) {
+  .background-image {
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.54)),
+      url("images/top.png") center 76px / min(680px, 132vw) auto no-repeat,
+      url("images/bottom.png") center calc(100% - 68px) / min(680px, 132vw) auto no-repeat;
+  }
 }
 
 .lightning-layer {
