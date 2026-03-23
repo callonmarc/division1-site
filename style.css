@@ -304,7 +304,7 @@ main {
 }
 
 .hero-focus {
-  width: min(100%, 560px);
+  width: min(100%, 760px);
   display: grid;
   justify-items: center;
   align-content: center;
@@ -321,18 +321,42 @@ main {
   letter-spacing: 0.18em;
 }
 
-.hero-logo {
-  width: min(100%, 280px);
+.hero-artwork {
+  position: relative;
+  width: min(100%, 760px);
+  min-height: clamp(500px, 70vh, 720px);
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.hero-image {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 380px);
   margin: 0 auto;
   border-radius: 0;
   border: 0;
-  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.12));
+  filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.16));
 }
 
-.hero-wordmark {
-  width: min(100%, 620px);
-  margin: -8px auto 0;
-  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.18));
+.hero-background {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.16));
+}
+
+.hero-background-top {
+  top: 0;
+  width: min(84%, 300px);
+}
+
+.hero-background-bottom {
+  bottom: 0;
+  width: min(100%, 680px);
 }
 
 h1,
@@ -674,6 +698,22 @@ p {
 
   .hero-home {
     padding: 20px 18px;
+  }
+
+  .hero-artwork {
+    min-height: clamp(420px, 62vh, 560px);
+  }
+
+  .hero-image {
+    width: min(100%, 300px);
+  }
+
+  .hero-background-top {
+    width: min(82%, 220px);
+  }
+
+  .hero-background-bottom {
+    width: min(100%, 520px);
   }
 
   h1 {
