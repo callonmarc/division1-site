@@ -78,15 +78,15 @@ img {
 
 .background-image::before {
   top: 64px;
-  width: min(66vw, 360px);
-  height: min(30vh, 200px);
+  width: min(89.1vw, 486px);
+  height: min(40.5vh, 270px);
   background-image: url("images/top.png");
 }
 
 .background-image::after {
   bottom: 20px;
-  width: min(78vw, 640px);
-  height: min(34vh, 240px);
+  width: min(175.5vw, 1440px);
+  height: min(76.5vh, 540px);
   background-image: url("images/bottom.png");
 }
 
@@ -277,8 +277,8 @@ h2 {
 }
 
 .brand-logo {
-  width: 44px;
-  height: 44px;
+  width: 50.6px;
+  height: 50.6px;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid var(--line-strong);
@@ -349,8 +349,8 @@ main {
 }
 
 .hero-top-image {
-  width: min(72%, clamp(200px, 28vh, 280px));
-  max-height: 17dvh;
+  width: min(97.2%, clamp(270px, 37.8vh, 378px));
+  max-height: 22.95dvh;
   opacity: 0.9;
   pointer-events: none;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.14));
@@ -358,8 +358,8 @@ main {
 }
 
 .hero-main-logo {
-  width: min(58%, clamp(210px, 31vh, 300px));
-  max-height: 28dvh;
+  width: min(66.7%, clamp(241.5px, 35.65vh, 345px));
+  max-height: 32.2dvh;
   border-radius: 0;
   border: 0;
   filter: drop-shadow(0 0 26px rgba(255, 255, 255, 0.22));
@@ -375,8 +375,8 @@ main {
 }
 
 .hero-bottom-image {
-  width: min(100%, clamp(340px, 47vh, 490px));
-  max-height: 25dvh;
+  width: min(100%, clamp(765px, 105.75vh, 1102.5px));
+  max-height: 56.25dvh;
   pointer-events: none;
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
@@ -724,8 +724,8 @@ body[data-page="home"] .page-shell {
   }
 
   .brand-logo {
-    width: 34px;
-    height: 34px;
+    width: 39.1px;
+    height: 39.1px;
   }
 
   .brand-mark {
@@ -772,13 +772,13 @@ body[data-page="home"] .page-shell {
   }
 
   .hero-top-image {
-    width: min(84vw, 240px);
-    max-height: 14dvh;
+    width: min(113.4vw, 324px);
+    max-height: 18.9dvh;
   }
 
   .hero-main-logo {
-    width: min(62vw, 188px);
-    max-height: 22dvh;
+    width: min(71.3vw, 216.2px);
+    max-height: 25.3dvh;
   }
 
   .hero-bottom-group {
@@ -786,8 +786,8 @@ body[data-page="home"] .page-shell {
   }
 
   .hero-bottom-image {
-    width: min(88vw, 320px);
-    max-height: 19dvh;
+    width: min(198vw, 720px);
+    max-height: 42.75dvh;
   }
 
   h1 {
