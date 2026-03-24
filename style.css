@@ -35,7 +35,7 @@ body {
 body[data-page="home"] {
   min-height: 100vh;
   min-height: 100dvh;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 a {
@@ -243,7 +243,7 @@ img {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0 auto;
-  padding: clamp(12px, 2.2vh, 24px) 0;
+  padding: clamp(10px, 1.9vh, 18px) 0 clamp(12px, 2vh, 18px);
 }
 
 .site-header {
@@ -251,7 +251,7 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 2px 0 clamp(10px, 2.2vh, 24px);
+  padding: 0 0 clamp(6px, 1.2vh, 12px);
 }
 
 .brand {
@@ -334,15 +334,15 @@ main {
   flex: 1;
   display: grid;
   place-items: center;
-  padding: 0 24px 4px;
+  padding: 0 24px;
 }
 
 .hero-focus {
-  width: min(100%, 760px);
+  width: min(100%, 720px);
   display: grid;
   justify-items: center;
-  align-content: start;
-  gap: 8px;
+  align-content: center;
+  gap: 6px;
   text-align: center;
 }
 
@@ -356,31 +356,33 @@ main {
 }
 
 .hero-artwork {
-  width: min(100%, 760px);
+  width: min(100%, 700px);
   min-height: 0;
-  padding: 2px 0 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(8px, 1.5vh, 14px);
+  gap: clamp(6px, 1vh, 12px);
 }
 
 .hero-stack {
-  width: min(100%, 660px);
-  display: flex;
-  flex-direction: column;
+  width: min(100%, 620px);
+  position: relative;
+  display: grid;
   align-items: center;
+  justify-items: center;
+  isolation: isolate;
 }
 
 .hero-image {
   position: relative;
   z-index: 2;
-  width: min(100%, clamp(250px, 36vh, 332px));
+  width: min(100%, clamp(236px, 33vh, 312px));
   margin: 0 auto;
   border-radius: 0;
   border: 0;
-  filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.16));
+  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.2));
 }
 
 .hero-background {
@@ -391,15 +393,16 @@ main {
 }
 
 .hero-background-top {
-  width: min(88%, 320px);
-  margin-bottom: clamp(2px, 0.8vh, 8px);
-  z-index: 2;
+  width: min(86%, 300px);
+  margin-bottom: clamp(-22px, -3vh, -10px);
+  z-index: 3;
 }
 
 .hero-background-bottom {
-  width: min(94%, clamp(420px, 62vh, 560px));
-  margin-top: clamp(-54px, -6vh, -28px);
+  width: min(94%, clamp(360px, 50vh, 480px));
+  margin-top: clamp(-62px, -9vh, -40px);
   z-index: 1;
+  opacity: 0.88;
 }
 
 h1,
@@ -439,9 +442,9 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
-  margin-top: clamp(-66px, -8vh, -34px);
+  margin-top: clamp(-68px, -10vh, -46px);
   position: relative;
-  z-index: 3;
+  z-index: 4;
 }
 
 body[data-page="home"] .page-shell {
@@ -470,12 +473,14 @@ body[data-page="home"] .page-shell {
 }
 
 .button-primary {
-  background: transparent;
-  color: #f2f2f2;
+  background: #f4f4f4;
+  color: #090909;
+  border-color: rgba(255, 255, 255, 0.95);
 }
 
 .button-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(5, 7, 14, 0.6);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18), 0 0 24px rgba(112, 148, 220, 0.16);
 }
 
 .page-main {
@@ -725,6 +730,10 @@ body[data-page="home"] .page-shell {
 }
 
 @media (max-width: 720px) {
+  body[data-page="home"] {
+    overflow-y: auto;
+  }
+
   .page-shell {
     width: min(calc(100% - 20px), var(--site-width));
     padding-top: 10px;
@@ -811,7 +820,7 @@ body[data-page="home"] .page-shell {
 
   .hero-background-bottom {
     width: min(96%, 370px);
-    margin-top: -22px;
+    margin-top: -30px;
   }
 
   h1 {
@@ -856,7 +865,7 @@ body[data-page="home"] .page-shell {
 
   .hero-actions {
     flex-direction: column;
-    margin-top: -14px;
+    margin-top: -16px;
     gap: 10px;
   }
 
