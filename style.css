@@ -375,7 +375,7 @@ main {
 }
 
 .hero-bottom-image {
-  width: min(100%, clamp(320px, 44vh, 460px));
+  width: min(100%, clamp(340px, 47vh, 490px));
   max-height: 25dvh;
   pointer-events: none;
   opacity: 0.88;
@@ -786,7 +786,7 @@ body[data-page="home"] .page-shell {
   }
 
   .hero-bottom-image {
-    width: min(88vw, 300px);
+    width: min(88vw, 320px);
     max-height: 19dvh;
   }
 
