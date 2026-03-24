@@ -35,7 +35,7 @@ body {
 body[data-page="home"] {
   min-height: 100vh;
   min-height: 100dvh;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 a {
@@ -397,8 +397,8 @@ main {
 }
 
 .hero-background-bottom {
-  width: min(100%, clamp(460px, 72vh, 640px));
-  margin-top: clamp(-32px, -4vh, -14px);
+  width: min(94%, clamp(420px, 62vh, 560px));
+  margin-top: clamp(-54px, -6vh, -28px);
   z-index: 1;
 }
 
@@ -725,10 +725,6 @@ body[data-page="home"] .page-shell {
 }
 
 @media (max-width: 720px) {
-  body[data-page="home"] {
-    overflow-y: auto;
-  }
-
   .page-shell {
     width: min(calc(100% - 20px), var(--site-width));
     padding-top: 10px;
@@ -814,8 +810,8 @@ body[data-page="home"] .page-shell {
   }
 
   .hero-background-bottom {
-    width: min(108%, 420px);
-    margin-top: -10px;
+    width: min(96%, 370px);
+    margin-top: -22px;
   }
 
   h1 {
