@@ -57,6 +57,34 @@ img {
   filter: saturate(0.92) brightness(0.72) contrast(1.04);
 }
 
+.background-image::before,
+.background-image::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0.16;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.06));
+}
+
+.background-image::before {
+  top: 64px;
+  width: min(66vw, 360px);
+  height: min(30vh, 200px);
+  background-image: url("images/top.png");
+}
+
+.background-image::after {
+  bottom: 20px;
+  width: min(78vw, 640px);
+  height: min(34vh, 240px);
+  background-image: url("images/bottom.png");
+}
+
 .lightning-layer {
   z-index: 1;
   pointer-events: none;
@@ -324,7 +352,7 @@ main {
 .hero-artwork {
   position: relative;
   width: min(100%, 760px);
-  min-height: clamp(500px, 72vh, 720px);
+  min-height: clamp(430px, 60vh, 620px);
   padding: 12px 0;
   display: grid;
   place-items: center;
@@ -356,7 +384,7 @@ main {
 }
 
 .hero-background-bottom {
-  bottom: -10px;
+  top: calc(50% + 94px);
   width: min(100%, 640px);
 }
 
@@ -733,7 +761,7 @@ p {
   }
 
   .hero-home {
-    padding: 0 14px 4px;
+    padding: 14px 14px 4px;
     align-items: start;
   }
 
@@ -748,16 +776,16 @@ p {
 
   .hero-image {
     width: min(100%, 236px);
-    transform: translateY(-8px);
+    transform: translateY(4px);
   }
 
   .hero-background-top {
-    top: -26px;
+    top: -10px;
     width: min(105vw, 370px);
   }
 
   .hero-background-bottom {
-    bottom: -2px;
+    top: calc(50% + 84px);
     width: min(108%, 420px);
   }
 
