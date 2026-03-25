@@ -334,23 +334,23 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(2px, 0.8vh, 8px) 24px clamp(6px, 1.4vh, 12px);
+  padding: clamp(2px, 0.8vh, 8px) 24px clamp(4px, 1vh, 10px);
 }
 
 .hero-composition {
   width: min(100%, 620px);
-  max-height: calc(100dvh - 104px);
+  max-height: calc(100dvh - 108px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 0;
+  justify-content: center;
+  gap: clamp(6px, 1.1vh, 12px);
   text-align: center;
 }
 
 .hero-top-image {
-  width: min(90%, clamp(220px, 30vh, 320px));
-  max-height: 17dvh;
+  width: min(90%, clamp(200px, 27vh, 300px));
+  max-height: 14dvh;
   opacity: 0.9;
   pointer-events: none;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.14));
@@ -358,8 +358,8 @@ main {
 }
 
 .hero-main-logo {
-  width: min(62%, clamp(205px, 27vh, 290px));
-  max-height: 23dvh;
+  width: min(58%, clamp(180px, 21vh, 250px));
+  max-height: 19dvh;
   border-radius: 0;
   border: 0;
   filter: drop-shadow(0 0 26px rgba(255, 255, 255, 0.22));
@@ -367,24 +367,20 @@ main {
 }
 
 .hero-bottom-group {
-  width: min(100%, 580px);
+  width: min(100%, 620px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
-  margin-top: clamp(-70px, -8.4vh, -34px);
-  position: relative;
-  top: clamp(-12px, -1.8vh, -6px);
+  gap: clamp(4px, 0.8vh, 10px);
 }
 
 .hero-bottom-image {
-  width: min(520%, clamp(2800px, 440vh, 4800px));
-  max-height: 76dvh;
+  width: min(100%, clamp(660px, 120vh, 1020px));
+  max-height: 44dvh;
   pointer-events: none;
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: translateY(clamp(-38px, -5.4vh, -16px));
 }
 
 h1,
@@ -424,9 +420,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
-  margin-top: clamp(-62px, -8vh, -24px);
-  position: relative;
-  top: clamp(-8px, -1.2vh, -4px);
+  margin-top: 0;
 }
 
 body[data-page="home"] .page-shell {
