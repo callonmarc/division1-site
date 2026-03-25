@@ -420,6 +420,8 @@ main {
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
   object-fit: contain;
+  transform: translateY(-18px) scale(1.12);
+  transform-origin: center bottom;
 }
 
 h1,
@@ -973,6 +975,8 @@ body[data-page="shop"] .price-text {
   .hero-bottom-image {
     width: min(320vw, 1200px);
     max-height: 40dvh;
+    transform: translateY(-14px) scale(1.1);
+    transform-origin: center bottom;
   }
 
   h1 {
