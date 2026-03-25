@@ -339,11 +339,11 @@ main {
 
 .hero-composition {
   width: min(100%, 620px);
-  max-height: calc(100dvh - 110px);
+  max-height: calc(100dvh - 104px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   gap: 0;
   text-align: center;
 }
@@ -372,17 +372,19 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 0;
-  margin-top: clamp(-46px, -6vh, -24px);
+  margin-top: clamp(-70px, -8.4vh, -34px);
+  position: relative;
+  top: clamp(-12px, -1.8vh, -6px);
 }
 
 .hero-bottom-image {
   width: min(520%, clamp(2800px, 440vh, 4800px));
-  max-height: 84dvh;
+  max-height: 76dvh;
   pointer-events: none;
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: translateY(clamp(-20px, -3vh, -10px));
+  transform: translateY(clamp(-38px, -5.4vh, -16px));
 }
 
 h1,
@@ -422,7 +424,9 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
-  margin-top: clamp(-26px, -3.6vh, -14px);
+  margin-top: clamp(-62px, -8vh, -24px);
+  position: relative;
+  top: clamp(-8px, -1.2vh, -4px);
 }
 
 body[data-page="home"] .page-shell {
@@ -443,6 +447,13 @@ body[data-page="home"] .page-shell {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+body[data-page="home"] .hero-actions .button {
+  min-height: 38px;
+  padding: 0 14px;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
 }
 
 .button:hover,
