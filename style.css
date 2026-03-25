@@ -233,6 +233,29 @@ img {
     linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.56));
 }
 
+
+body[data-page="shop"] .background-image,
+body[data-page="gallery"] .background-image,
+body[data-page="socials"] .background-image {
+  filter: saturate(1.02) brightness(0.88) contrast(1.08);
+}
+
+body[data-page="shop"] .background-image::before,
+body[data-page="shop"] .background-image::after,
+body[data-page="gallery"] .background-image::before,
+body[data-page="gallery"] .background-image::after,
+body[data-page="socials"] .background-image::before,
+body[data-page="socials"] .background-image::after {
+  opacity: 0.3;
+}
+
+body[data-page="shop"] .page-overlay,
+body[data-page="gallery"] .page-overlay,
+body[data-page="socials"] .page-overlay {
+  background:
+    radial-gradient(circle at 50% 34%, rgba(0, 0, 0, 0.66) 0%, rgba(0, 0, 0, 0.42) 18%, rgba(0, 0, 0, 0.16) 34%, rgba(0, 0, 0, 0.08) 58%, rgba(0, 0, 0, 0.03) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.42));
+}
 .page-shell {
   position: relative;
   z-index: 3;
