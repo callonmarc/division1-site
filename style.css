@@ -334,23 +334,23 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(4px, 1.2vh, 12px) 24px;
+  padding: clamp(2px, 0.8vh, 8px) 24px clamp(6px, 1.4vh, 12px);
 }
 
 .hero-composition {
   width: min(100%, 620px);
-  max-height: 100%;
+  max-height: min(100%, calc(100dvh - 110px));
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 0;
   text-align: center;
 }
 
 .hero-top-image {
-  width: min(97.2%, clamp(270px, 37.8vh, 378px));
-  max-height: 22.95dvh;
+  width: min(90%, clamp(220px, 30vh, 320px));
+  max-height: 17dvh;
   opacity: 0.9;
   pointer-events: none;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.14));
@@ -358,8 +358,8 @@ main {
 }
 
 .hero-main-logo {
-  width: min(66.7%, clamp(241.5px, 35.65vh, 345px));
-  max-height: 32.2dvh;
+  width: min(62%, clamp(205px, 27vh, 290px));
+  max-height: 23dvh;
   border-radius: 0;
   border: 0;
   filter: drop-shadow(0 0 26px rgba(255, 255, 255, 0.22));
@@ -376,8 +376,8 @@ main {
 }
 
 .hero-bottom-image {
-  width: min(130%, clamp(994.5px, 137.475vh, 1433.25px));
-  max-height: 56.25dvh;
+  width: min(118%, clamp(640px, 96vh, 980px));
+  max-height: 36dvh;
   pointer-events: none;
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
