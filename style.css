@@ -372,16 +372,17 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 0;
-  margin-top: clamp(-20px, -3vh, -10px);
+  margin-top: clamp(-46px, -6vh, -24px);
 }
 
 .hero-bottom-image {
-  width: min(260%, clamp(1400px, 220vh, 2400px));
-  max-height: 42dvh;
+  width: min(520%, clamp(2800px, 440vh, 4800px));
+  max-height: 84dvh;
   pointer-events: none;
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
   object-fit: contain;
+  transform: translateY(clamp(-20px, -3vh, -10px));
 }
 
 h1,
@@ -421,7 +422,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
-  margin-top: 0;
+  margin-top: clamp(-26px, -3.6vh, -14px);
 }
 
 body[data-page="home"] .page-shell {
@@ -833,7 +834,7 @@ body[data-page="home"] .page-shell {
 
   .hero-actions {
     flex-direction: column;
-    margin-top: 0;
+    margin-top: clamp(-26px, -3.6vh, -14px);
     gap: 8px;
   }
 
