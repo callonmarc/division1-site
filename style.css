@@ -395,7 +395,7 @@ main {
   pointer-events: none;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: translateY(3px) scale(1.62);
+  transform: translateY(7px) scale(1.62);
 }
 
 .hero-main-logo {
@@ -502,12 +502,13 @@ body[data-page="home"] .hero-actions .button {
   background: #f4f4f4;
   color: #090909;
   border-color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-70px)
+  transform: translateY(-70px);
 }
 
 .button-secondary {
   background: rgba(5, 7, 14, 0.6);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18), 0 0 24px rgba(112, 148, 220, 0.16);
+    transform: translateY(-70px);
 }
 
 .page-main {
