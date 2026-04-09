@@ -395,7 +395,7 @@ main {
   pointer-events: none;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: scale(1.22);
+  transform: scale(1.62);
 }
 
 .hero-main-logo {
@@ -464,7 +464,7 @@ p {
   justify-content: center;
   gap: 14px;
   margin-top: clamp(-16px, -2vh, -8px);
-  transform: translateY (-43px);
+  transform: translateY (-37px);
 }
 
 body[data-page="home"] .page-shell {
