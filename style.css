@@ -389,7 +389,7 @@ main {
 }
 
 .hero-top-image {
-  width: min(96%, clamp(220px, 29vh, 340px));
+  width: min(96%, clamp(230px, 29vh, 340px));
   max-height: 12.8dvh;
   opacity: 0.9;
   pointer-events: none;
@@ -421,7 +421,7 @@ main {
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: translateY(-26px) scale(1.78);
+  transform: translateY(-28px) scale(1.68);
   transform-origin: center bottom;
 }
 
