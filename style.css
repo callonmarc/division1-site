@@ -471,6 +471,39 @@ body[data-page="home"] .page-shell {
   min-height: 100dvh;
 }
 
+@media (min-width: 721px) {
+  body[data-page="home"] .hero-home {
+    align-items: stretch;
+    padding-top: clamp(8px, 1.2vh, 14px);
+    padding-bottom: clamp(12px, 1.8vh, 20px);
+    overflow: visible;
+  }
+
+  body[data-page="home"] .hero-composition {
+    width: min(100%, 760px);
+    min-height: calc(100dvh - 118px);
+    max-height: none;
+    justify-content: space-between;
+    gap: clamp(10px, 1.5vh, 18px);
+  }
+
+  body[data-page="home"] .hero-top-image {
+    max-height: min(16dvh, 140px);
+  }
+
+  body[data-page="home"] .hero-main-logo {
+    max-height: min(25dvh, 230px);
+  }
+
+  body[data-page="home"] .hero-bottom-image {
+    max-height: min(28dvh, 250px);
+  }
+
+  body[data-page="home"] .hero-actions {
+    margin-top: 0;
+  }
+}
+
 .button {
   display: inline-flex;
   align-items: center;
