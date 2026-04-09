@@ -373,34 +373,34 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(8px, 1.4vh, 18px) 24px clamp(8px, 1.5vh, 16px);
+  padding: clamp(10px, 1.8vh, 24px) 24px clamp(14px, 2.6vh, 28px);
   overflow: hidden;
 }
 
 .hero-composition {
-  width: min(100%, 620px);
-  max-height: calc(100dvh - 108px);
+  width: min(100%, 700px);
+  max-height: calc(100dvh - 94px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(6px, 1.1vh, 12px);
+  gap: clamp(10px, 1.8vh, 20px);
   text-align: center;
 }
 
 .hero-top-image {
-  width: min(96%, clamp(230px, 29vh, 320px));
-  max-height: 12.8dvh;
+  width: min(88%, clamp(260px, 34vw, 520px));
+  max-height: min(18dvh, 170px);
   opacity: 0.9;
   pointer-events: none;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: translateY(6px) scale(1.38);
+  transform: translateY(0) scale(1);
 }
 
 .hero-main-logo {
-  width: min(61%, clamp(190px, 22vh, 266px));
-  max-height: 19.2dvh;
+  width: min(54%, clamp(210px, 24vw, 340px));
+  max-height: min(30dvh, 300px);
   border-radius: 0;
   border: 0;
   filter: drop-shadow(0 0 26px rgba(255, 255, 255, 0.22));
@@ -408,21 +408,21 @@ main {
 }
 
 .hero-bottom-group {
-  width: min(100%, 620px);
+  width: min(100%, 700px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(4px, 0.7vh, 8px);
+  gap: clamp(8px, 1.2vh, 14px);
 }
 
 .hero-bottom-image {
-  width: min(100%, clamp(660px, 120vh, 1020px));
-  max-height: 44dvh;
+  width: min(100%, 900px);
+  max-height: min(42dvh, 380px);
   pointer-events: none;
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: translateX(-2px) translateY(-10px) scale(1.24);
+  transform: translateX(0) translateY(0) scale(1);
   transform-origin: center bottom;
 }
 
@@ -463,7 +463,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
-  margin-top: clamp(-16px, -2vh, -8px);
+  margin-top: 2px;
 }
 
 body[data-page="home"] .page-shell {
@@ -871,8 +871,11 @@ body[data-page="shop"] .add-to-cart-button:focus-visible {
 
 body[data-page="gallery"] .gallery-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: minmax(360px, auto);
+  grid-auto-rows: minmax(300px, auto);
   align-items: stretch;
+  width: min(100%, 920px);
+  margin: clamp(8px, 2vh, 24px) auto 0;
+  gap: clamp(14px, 2vw, 26px);
 }
 
 body[data-page="gallery"] .gallery-card {
@@ -943,9 +946,9 @@ body[data-page="gallery"] .gallery-note {
 }
 
 body[data-page="gallery"] .gallery-card img {
-  width: 92%;
-  height: 92%;
-  max-height: 100%;
+  width: 86%;
+  height: 86%;
+  max-height: 86%;
   object-fit: contain;
 }
 
@@ -1206,23 +1209,23 @@ body[data-page="gallery"] .gallery-card img {
   }
 
   .hero-home {
-    padding: 6px 12px 10px;
+    padding: 10px 10px 16px;
   }
 
   .hero-composition {
-    gap: 4px;
-    width: min(100%, 430px);
+    gap: 8px;
+    width: min(100%, 460px);
   }
 
   .hero-top-image {
-    width: min(100%, 300px);
-    max-height: 13dvh;
-    transform: translateY(0) scale(1.08);
+    width: min(84vw, 300px);
+    max-height: 14dvh;
+    transform: none;
   }
 
   .hero-main-logo {
-    width: min(66vw, 220px);
-    max-height: 20dvh;
+    width: min(62vw, 210px);
+    max-height: 22dvh;
   }
 
   .hero-bottom-group {
@@ -1231,8 +1234,8 @@ body[data-page="gallery"] .gallery-card img {
 
   .hero-bottom-image {
     width: min(100%, 520px);
-    max-height: 32dvh;
-    transform: translateY(-6px) scale(1.02);
+    max-height: 26dvh;
+    transform: none;
     transform-origin: center bottom;
   }
 
@@ -1264,6 +1267,12 @@ body[data-page="gallery"] .gallery-card img {
   .gallery-grid,
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  body[data-page="gallery"] .gallery-grid {
+    width: 100%;
+    grid-auto-rows: minmax(230px, auto);
+    margin-top: 4px;
   }
 
   body[data-page="shop"] .shop-grid {
@@ -1299,7 +1308,7 @@ body[data-page="gallery"] .gallery-card img {
 
   .hero-actions {
     flex-direction: column;
-    margin-top: 2px;
+    margin-top: 6px;
     gap: 8px;
   }
 
