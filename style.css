@@ -421,7 +421,8 @@ main {
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: translateY(-29px) scale(1.48);
+  transform: translateY(-28px) scale(1.48);
+  transform: translateX(-2px)
   transform-origin: center bottom;
 }
 
