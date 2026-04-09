@@ -39,8 +39,20 @@
         <p class="eyebrow">Division 1 Shop</p>
       </section>
 
+      <section class="cart-panel" aria-live="polite">
+        <div class="cart-panel-header">
+          <p class="eyebrow">Cart</p>
+          <p class="cart-count"><span data-cart-count>0</span> items</p>
+        </div>
+        <div class="cart-body">
+          <p class="cart-empty" data-cart-empty>Your cart is empty.</p>
+          <ul class="cart-items" data-cart-items></ul>
+          <p class="cart-total">Total: <strong data-cart-total>$0.00</strong></p>
+        </div>
+      </section>
+
       <section class="product-grid shop-grid" aria-label="Division 1 shirt drop">
-        <article class="product-card">
+        <article class="product-card" data-product-card>
           <p class="product-tag">D1</p>
           <div class="shirt-stage">
             <div class="shirt-image-wrap">
@@ -49,10 +61,11 @@
           </div>
           <div class="product-meta">
             <h2>Shirt 1</h2>
-            <p class="price-text">Price</p>
+            <p class="price-text">$45.00</p>
           </div>
+          <button class="add-to-cart-button" type="button" data-add-to-cart data-name="Shirt 1" data-price="45">Add to cart</button>
         </article>
-        <article class="product-card">
+        <article class="product-card" data-product-card>
           <p class="product-tag">D1</p>
           <div class="shirt-stage">
             <div class="shirt-image-wrap">
@@ -61,10 +74,11 @@
           </div>
           <div class="product-meta">
             <h2>Shirt 2</h2>
-            <p class="price-text">Price</p>
+            <p class="price-text">$48.00</p>
           </div>
+          <button class="add-to-cart-button" type="button" data-add-to-cart data-name="Shirt 2" data-price="48">Add to cart</button>
         </article>
-        <article class="product-card">
+        <article class="product-card" data-product-card>
           <p class="product-tag">D1</p>
           <div class="shirt-stage">
             <div class="shirt-image-wrap">
@@ -73,10 +87,11 @@
           </div>
           <div class="product-meta">
             <h2>Shirt 3</h2>
-            <p class="price-text">Price</p>
+            <p class="price-text">$50.00</p>
           </div>
+          <button class="add-to-cart-button" type="button" data-add-to-cart data-name="Shirt 3" data-price="50">Add to cart</button>
         </article>
-        <article class="product-card">
+        <article class="product-card" data-product-card>
           <p class="product-tag">D1</p>
           <div class="shirt-stage">
             <div class="shirt-image-wrap">
@@ -85,12 +100,13 @@
           </div>
           <div class="product-meta">
             <h2>Shirt 4</h2>
-            <p class="price-text">Price</p>
+            <p class="price-text">$52.00</p>
           </div>
+          <button class="add-to-cart-button" type="button" data-add-to-cart data-name="Shirt 4" data-price="52">Add to cart</button>
         </article>
       </section>
     </main>
   </div>
-
+  <script src="script.js" defer></script>
 </body>
 </html>
