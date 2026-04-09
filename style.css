@@ -875,6 +875,26 @@ body[data-page="gallery"] .gallery-grid {
   align-items: stretch;
 }
 
+body[data-page="gallery"] .gallery-card {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body[data-page="gallery"] .gallery-card::before,
+body[data-page="gallery"] .gallery-card::after,
+body[data-page="gallery"] .gallery-note::before,
+body[data-page="gallery"] .gallery-note::after {
+  display: none;
+}
+
+body[data-page="gallery"] .gallery-note {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
 .gallery-card {
   display: grid;
   place-items: center;
@@ -923,8 +943,8 @@ body[data-page="gallery"] .gallery-grid {
 }
 
 body[data-page="gallery"] .gallery-card img {
-  width: 100%;
-  height: 100%;
+  width: 92%;
+  height: 92%;
   max-height: 100%;
   object-fit: contain;
 }
