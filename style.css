@@ -475,7 +475,7 @@ body[data-page="home"] .page-shell {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0 18px;
+  padding: 0 1px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   font-family: "Montserrat", sans-serif;
