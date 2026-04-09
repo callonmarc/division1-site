@@ -389,12 +389,13 @@ main {
 }
 
 .hero-top-image {
-  width: min(96%, clamp(230px, 29vh, 380px));
+  width: min(96%, clamp(230px, 29vh, 320px));
   max-height: 12.8dvh;
   opacity: 0.9;
   pointer-events: none;
   filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.14));
   object-fit: contain;
+  transform: scale(1.22);
 }
 
 .hero-main-logo {
@@ -421,7 +422,7 @@ main {
   opacity: 0.88;
   filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.14));
   object-fit: contain;
-  transform: translateX(-2px) translateY(-27.5px) scale(1.48);
+  transform: translateX(-3.5px) translateY(-26.5px) scale(1.48);
   transform-origin: center bottom;
 }
 
