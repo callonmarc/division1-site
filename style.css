@@ -464,6 +464,7 @@ p {
   justify-content: center;
   gap: 14px;
   margin-top: clamp(-16px, -2vh, -8px);
+  transform: translateY (-43px);
 }
 
 body[data-page="home"] .page-shell {
