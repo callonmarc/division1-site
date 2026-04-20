@@ -705,8 +705,32 @@ body[data-page="shop"] .shirt-stage {
     linear-gradient(180deg, rgba(12, 12, 12, 0.75), rgba(8, 8, 8, 0.36));
   padding: 14px 12px 8px;
   min-height: 300px;
-  display: flex;
-  align-items: center;
+}
+
+body[data-page="shop"] .shirt-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 115, 210, 0.8) rgba(255, 255, 255, 0.14);
+  border-radius: calc(var(--radius-sm) - 4px);
+}
+
+body[data-page="shop"] .shirt-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+body[data-page="shop"] .shirt-carousel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+body[data-page="shop"] .shirt-carousel::-webkit-scrollbar-thumb {
+  background: rgba(255, 115, 210, 0.8);
+  border-radius: 999px;
 }
 
 body[data-page="shop"] .shirt-image-wrap {
@@ -716,7 +740,9 @@ body[data-page="shop"] .shirt-image-wrap {
   align-items: center;
   width: 100%;
   max-width: 18rem;
+  min-height: 278px;
   margin: 0 auto;
+  scroll-snap-align: center;
 }
 
 body[data-page="shop"] .shirt-image-wrap::before {
