@@ -48,6 +48,7 @@
           <p class="cart-empty" data-cart-empty>Your cart is empty.</p>
           <ul class="cart-items" data-cart-items></ul>
           <p class="cart-total">Total: <strong data-cart-total>$0.00</strong></p>
+          <a class="cart-checkout-link" href="https://buy.stripe.com/fZu6oGdN17QwgXd3pK6Ri01" target="_blank" rel="noopener noreferrer">Checkout Cart</a>
         </div>
       </section>
 
@@ -68,7 +69,7 @@
             <h2>rock &amp; roll</h2>
             <p class="price-text">$35.00</p>
           </div>
-          <a class="add-to-cart-button" href="https://buy.stripe.com/fZu6oGdN17QwgXd3pK6Ri01" target="_blank" rel="noopener noreferrer">Checkout</a>
+          <button class="add-to-cart-button" type="button" data-add-to-cart data-name="Rock &amp; Roll Shirt" data-price="35">Add to cart</button>
         </article>
         <article class="product-card" data-product-card>
           <p class="product-tag">D1</p>
@@ -86,11 +87,12 @@
             <h2>no tomorrow</h2>
             <p class="price-text">$30.00</p>
           </div>
-          <a class="add-to-cart-button" href="https://buy.stripe.com/3cI28q38n2wccGX4tO6Ri00" target="_blank" rel="noopener noreferrer">Checkout</a>
+          <button class="add-to-cart-button" type="button" data-add-to-cart data-name="No Tomorrow Shirt" data-price="30">Add to cart</button>
         </article>
       </section>
     </main>
   </div>
+  <aside class="cart-toast" data-cart-toast role="status" aria-live="polite" aria-atomic="true"></aside>
   <script src="script.js" defer></script>
 </body>
 </html>

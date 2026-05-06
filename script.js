@@ -12,6 +12,7 @@
   const cartItems = document.querySelector("[data-cart-items]");
   const cartTotal = document.querySelector("[data-cart-total]");
   const emptyState = document.querySelector("[data-cart-empty]");
+  const cartToast = document.querySelector("[data-cart-toast]");
 
   if (!addButtons.length || !cartCount || !cartItems || !cartTotal || !emptyState) {
     return;
@@ -36,6 +37,19 @@
     render();
   }
 
+  let toastTimeout;
+
+  function showToast(message) {
+    if (!cartToast) return;
+    cartToast.textContent = message;
+    cartToast.classList.add("is-visible");
+
+    window.clearTimeout(toastTimeout);
+    toastTimeout = window.setTimeout(() => {
+      cartToast.classList.remove("is-visible");
+    }, 1800);
+  }
+
   function addToCart(name, price) {
     const existing = cart.find((item) => item.name === name);
     if (existing) {
@@ -44,6 +58,7 @@
       cart.push({ name, price, quantity: 1 });
     }
     writeCart([...cart]);
+    showToast(`${name} added to cart`);
   }
 
   function removeFromCart(name) {
