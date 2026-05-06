@@ -109,15 +109,9 @@
   }
 
 
-  async function startCheckout() {
+  function startCheckout() {
     if (!cart.length) {
       showToast("Your cart is empty");
-      return;
-    }
-
-    const invalidItem = cart.find((item) => !item.priceId);
-    if (invalidItem) {
-      showToast(`Missing Stripe Price ID for ${invalidItem.name}`);
       return;
     }
 
@@ -126,36 +120,7 @@
       checkoutButton.textContent = "Redirecting...";
     }
 
-    try {
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: cart.map((item) => ({
-            priceId: item.priceId,
-            quantity: item.quantity,
-          })),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Unable to create checkout session");
-      }
-
-      const data = await response.json();
-      if (!data?.url) {
-        throw new Error("Missing checkout URL");
-      }
-
-      window.location.href = data.url;
-    } catch (error) {
-      console.error(error);
-      showToast("Checkout failed. Please try again.");
-      if (checkoutButton) {
-        checkoutButton.disabled = false;
-        checkoutButton.textContent = "Checkout Cart";
-      }
-    }
+    window.location.href = "https://buy.stripe.com/fZu6oGdN17QwgXd3pK6Ri01";
   }
 
   addButtons.forEach((button) => {
