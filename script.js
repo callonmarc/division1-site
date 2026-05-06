@@ -13,6 +13,7 @@
   const cartTotal = document.querySelector("[data-cart-total]");
   const emptyState = document.querySelector("[data-cart-empty]");
   const cartToast = document.querySelector("[data-cart-toast]");
+  const checkoutButton = document.querySelector("[data-checkout-button]");
 
   if (!addButtons.length || !cartCount || !cartItems || !cartTotal || !emptyState) {
     return;
@@ -50,12 +51,13 @@
     }, 1800);
   }
 
-  function addToCart(name, price) {
+  function addToCart(name, price, priceId) {
     const existing = cart.find((item) => item.name === name);
     if (existing) {
       existing.quantity += 1;
+      if (priceId) existing.priceId = priceId;
     } else {
-      cart.push({ name, price, quantity: 1 });
+      cart.push({ name, price, quantity: 1, priceId: priceId || null });
     }
     writeCart([...cart]);
     showToast(`${name} added to cart`);
@@ -106,17 +108,72 @@
     });
   }
 
+
+  async function startCheckout() {
+    if (!cart.length) {
+      showToast("Your cart is empty");
+      return;
+    }
+
+    const invalidItem = cart.find((item) => !item.priceId);
+    if (invalidItem) {
+      showToast(`Missing Stripe Price ID for ${invalidItem.name}`);
+      return;
+    }
+
+    if (checkoutButton) {
+      checkoutButton.disabled = true;
+      checkoutButton.textContent = "Redirecting...";
+    }
+
+    try {
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: cart.map((item) => ({
+            priceId: item.priceId,
+            quantity: item.quantity,
+          })),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to create checkout session");
+      }
+
+      const data = await response.json();
+      if (!data?.url) {
+        throw new Error("Missing checkout URL");
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error(error);
+      showToast("Checkout failed. Please try again.");
+      if (checkoutButton) {
+        checkoutButton.disabled = false;
+        checkoutButton.textContent = "Checkout Cart";
+      }
+    }
+  }
+
   addButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const name = button.dataset.name || "Shirt";
       const price = Number(button.dataset.price || 0);
-      addToCart(name, price);
+      const priceId = button.dataset.priceId || "";
+      addToCart(name, price, priceId);
       button.textContent = "Added";
       window.setTimeout(() => {
         button.textContent = "Add to cart";
       }, 800);
     });
   });
+
+  if (checkoutButton) {
+    checkoutButton.addEventListener("click", startCheckout);
+  }
 
   render();
 })();
