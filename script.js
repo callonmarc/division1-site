@@ -1,3 +1,69 @@
+(function setupBackgroundVideo() {
+  const VIDEO_SRC = "videos/bg-vid.mp4";
+  const STORAGE_KEY = "division1-background-video-time";
+
+  if (!document.body) {
+    return;
+  }
+
+  const background = document.createElement("div");
+  background.className = "background-video-layer";
+  background.setAttribute("aria-hidden", "true");
+
+  const video = document.createElement("video");
+  video.className = "background-video";
+  video.src = VIDEO_SRC;
+  video.autoplay = true;
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("preload", "auto");
+
+  const overlay = document.createElement("div");
+  overlay.className = "background-video-overlay";
+
+  background.append(video, overlay);
+  document.body.prepend(background);
+
+  function getSavedTime() {
+    const rawTime = window.sessionStorage.getItem(STORAGE_KEY);
+    const savedTime = Number(rawTime);
+    return Number.isFinite(savedTime) && savedTime > 0 ? savedTime : 0;
+  }
+
+  function restoreTime() {
+    const savedTime = getSavedTime();
+    if (!savedTime || !Number.isFinite(video.duration)) {
+      return;
+    }
+
+    video.currentTime = savedTime % video.duration;
+  }
+
+  function saveTime() {
+    if (!Number.isFinite(video.currentTime)) {
+      return;
+    }
+
+    window.sessionStorage.setItem(STORAGE_KEY, String(video.currentTime));
+  }
+
+  video.addEventListener("loadedmetadata", restoreTime, { once: true });
+  video.addEventListener("timeupdate", saveTime);
+  window.addEventListener("pagehide", saveTime);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      saveTime();
+    }
+  });
+
+  video.play().catch(() => {
+    // Browsers may defer autoplay until enough data is available; the video remains non-blocking.
+  });
+})();
+
 // Background scene is handled with CSS layers in style.css.
 
 (function setupShopCart() {

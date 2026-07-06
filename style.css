@@ -47,6 +47,8 @@ img {
   max-width: 100%;
 }
 
+.background-video-layer,
+.background-video-overlay,
 .background-image,
 .lightning-layer,
 .page-overlay {
@@ -54,8 +56,27 @@ img {
   inset: 0;
 }
 
-.background-image {
+.background-video-layer {
   z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.12;
+}
+
+.background-video-overlay {
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.background-image {
+  z-index: 2;
   background:
     radial-gradient(circle at 50% 20%, rgba(36, 36, 36, 0.22), transparent 32%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.58));
@@ -91,7 +112,7 @@ img {
 }
 
 .lightning-layer {
-  z-index: 1;
+  z-index: 3;
   pointer-events: none;
   overflow: hidden;
 }
@@ -226,7 +247,7 @@ img {
 }
 
 .page-overlay {
-  z-index: 2;
+  z-index: 4;
   pointer-events: none;
   background:
     radial-gradient(circle at 50% 34%, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.58) 18%, rgba(0, 0, 0, 0.24) 34%, rgba(0, 0, 0, 0.1) 58%, rgba(0, 0, 0, 0.05) 100%),
@@ -274,7 +295,7 @@ body[data-page="shop"] .page-overlay {
 }
 .page-shell {
   position: relative;
-  z-index: 3;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   width: min(calc(100% - 32px), var(--site-width));
@@ -929,32 +950,33 @@ body[data-page="shop"] .add-to-cart-button:focus-visible {
 }
 
 body[data-page="gallery"] .gallery-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: minmax(300px, auto);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-auto-rows: 260px;
+  grid-auto-flow: dense;
   align-items: stretch;
-  width: min(100%, 920px);
+  width: min(100%, 1120px);
   margin: clamp(8px, 2vh, 24px) auto 0;
-  gap: clamp(14px, 2vw, 26px);
+  gap: clamp(12px, 1.8vw, 22px);
 }
 
 body[data-page="gallery"] .gallery-card {
-  padding: 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
+  min-height: 0;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(8, 8, 10, 0.58);
 }
 
-body[data-page="gallery"] .gallery-card::before,
-body[data-page="gallery"] .gallery-card::after,
-body[data-page="gallery"] .gallery-note::before,
-body[data-page="gallery"] .gallery-note::after {
-  display: none;
+body[data-page="gallery"] .gallery-card:nth-child(5n + 1) {
+  grid-row: span 2;
 }
 
-body[data-page="gallery"] .gallery-note {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
+body[data-page="gallery"] .gallery-card:nth-child(7n + 3) {
+  grid-column: span 2;
+}
+
+body[data-page="gallery"] .gallery-card:nth-child(11n + 6) {
+  grid-column: span 2;
+  grid-row: span 2;
 }
 
 .gallery-card {
@@ -1005,10 +1027,10 @@ body[data-page="gallery"] .gallery-note {
 }
 
 body[data-page="gallery"] .gallery-card img {
-  width: 86%;
-  height: 86%;
-  max-height: 86%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
 }
 
 .gallery-card:hover,
@@ -1330,8 +1352,13 @@ body[data-page="gallery"] .gallery-card img {
 
   body[data-page="gallery"] .gallery-grid {
     width: 100%;
-    grid-auto-rows: minmax(230px, auto);
+    grid-auto-rows: 230px;
     margin-top: 4px;
+  }
+
+  body[data-page="gallery"] .gallery-card:nth-child(n) {
+    grid-column: span 1;
+    grid-row: span 1;
   }
 
   body[data-page="shop"] .shop-grid {
