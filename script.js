@@ -117,20 +117,24 @@
     }, 1800);
   }
 
-  function addToCart(name, price, priceId) {
-    const existing = cart.find((item) => item.name === name);
+  function getCartItemLabel(item) {
+    return item.size ? `${item.name} (${item.size})` : item.name;
+  }
+
+  function addToCart(name, price, priceId, size) {
+    const existing = cart.find((item) => item.name === name && item.size === size);
     if (existing) {
       existing.quantity += 1;
       if (priceId) existing.priceId = priceId;
     } else {
-      cart.push({ name, price, quantity: 1, priceId: priceId || null });
+      cart.push({ name, price, quantity: 1, priceId: priceId || null, size });
     }
     writeCart([...cart]);
-    showToast(`${name} added to cart`);
+    showToast(`${name} (${size}) added to cart`);
   }
 
-  function removeFromCart(name) {
-    const existing = cart.find((item) => item.name === name);
+  function removeFromCart(index) {
+    const existing = cart[index];
     if (!existing) return;
 
     if (existing.quantity > 1) {
@@ -139,7 +143,7 @@
       return;
     }
 
-    writeCart(cart.filter((item) => item.name !== name));
+    writeCart(cart.filter((_, itemIndex) => itemIndex !== index));
   }
 
   function render() {
@@ -151,26 +155,30 @@
     emptyState.hidden = count > 0;
     cartItems.innerHTML = "";
 
-    cart.forEach((item) => {
+    cart.forEach((item, index) => {
       const line = document.createElement("li");
       line.className = "cart-item";
-      line.innerHTML = `
-        <span class="cart-item-name">${item.name} × ${item.quantity}</span>
-        <div class="cart-item-controls">
-          <strong>$${(item.price * item.quantity).toFixed(2)}</strong>
-          <button class="cart-remove-button" type="button" data-remove-from-cart="${item.name}" aria-label="Remove one ${item.name} from cart">Remove</button>
-        </div>
-      `;
-      cartItems.appendChild(line);
-    });
 
-    const removeButtons = cartItems.querySelectorAll("[data-remove-from-cart]");
-    removeButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const name = button.getAttribute("data-remove-from-cart");
-        if (!name) return;
-        removeFromCart(name);
-      });
+      const itemName = document.createElement("span");
+      itemName.className = "cart-item-name";
+      itemName.textContent = `${getCartItemLabel(item)} × ${item.quantity}`;
+
+      const controls = document.createElement("div");
+      controls.className = "cart-item-controls";
+
+      const lineTotal = document.createElement("strong");
+      lineTotal.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+
+      const removeButton = document.createElement("button");
+      removeButton.className = "cart-remove-button";
+      removeButton.type = "button";
+      removeButton.textContent = "Remove";
+      removeButton.setAttribute("aria-label", `Remove one ${getCartItemLabel(item)} from cart`);
+      removeButton.addEventListener("click", () => removeFromCart(index));
+
+      controls.append(lineTotal, removeButton);
+      line.append(itemName, controls);
+      cartItems.appendChild(line);
     });
   }
 
@@ -191,10 +199,20 @@
 
   addButtons.forEach((button) => {
     button.addEventListener("click", () => {
+      const productCard = button.closest("[data-product-card]");
+      const sizeSelector = productCard?.querySelector("[data-size-selector]");
+      const size = sizeSelector?.value || "";
+
+      if (!size) {
+        showToast("Select a size before adding to cart");
+        sizeSelector?.focus();
+        return;
+      }
+
       const name = button.dataset.name || "Shirt";
       const price = Number(button.dataset.price || 0);
       const priceId = button.dataset.priceId || "";
-      addToCart(name, price, priceId);
+      addToCart(name, price, priceId, size);
       button.textContent = "Added";
       window.setTimeout(() => {
         button.textContent = "Add to cart";
