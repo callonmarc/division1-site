@@ -183,19 +183,47 @@
   }
 
 
-  function startCheckout() {
-    if (!cart.length) {
-      showToast("Your cart is empty");
-      return;
+async function startCheckout() {
+  if (!cart.length) {
+    showToast("Your cart is empty");
+    return;
+  }
+
+  if (checkoutButton) {
+    checkoutButton.disabled = true;
+    checkoutButton.textContent = "Redirecting...";
+  }
+
+  try {
+    const response = await fetch(
+      "https://YOUR-VERCEL-PROJECT.vercel.app/api/create-checkout-session",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cart }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Checkout failed.");
     }
+
+    window.location.href = data.url;
+  } catch (error) {
+    console.error(error);
+    showToast("Checkout failed. Please try again.");
 
     if (checkoutButton) {
-      checkoutButton.disabled = true;
-      checkoutButton.textContent = "Redirecting...";
+      checkoutButton.disabled = false;
+      checkoutButton.textContent = "Checkout Cart";
     }
-
-    window.location.href = "https://buy.stripe.com/fZu6oGdN17QwgXd3pK6Ri01";
   }
+}
+
 
   addButtons.forEach((button) => {
     button.addEventListener("click", () => {
