@@ -196,7 +196,7 @@ async function startCheckout() {
 
   try {
     const response = await fetch(
-      "div1-backend-kac2d026h-callonmarcs-projects.vercel.app",
+      "https://div1-backend-kac2d026h-callonmarcs-projects.vercel.app/api/create-checkout-session",
       {
         method: "POST",
         headers: {
