@@ -92,7 +92,16 @@
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (!raw) return [];
       const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
+      if (!Array.isArray(parsed)) return [];
+      return parsed
+        .map((item) => ({
+          name: String(item.name || "Shirt"),
+          price: Number(item.price) || 0,
+          quantity: Math.max(1, Number.parseInt(item.quantity, 10) || 1),
+          priceId: item.priceId ? String(item.priceId) : null,
+          size: item.size ? String(item.size) : "",
+        }))
+        .filter((item) => item.price > 0);
     } catch {
       return [];
     }
@@ -133,16 +142,21 @@
     showToast(`${name} (${size}) added to cart`);
   }
 
-  function removeFromCart(index) {
+  function updateCartQuantity(index, change) {
     const existing = cart[index];
     if (!existing) return;
 
-    if (existing.quantity > 1) {
-      existing.quantity -= 1;
-      writeCart([...cart]);
+    const nextQuantity = existing.quantity + change;
+    if (nextQuantity <= 0) {
+      writeCart(cart.filter((_, itemIndex) => itemIndex !== index));
       return;
     }
 
+    existing.quantity = nextQuantity;
+    writeCart([...cart]);
+  }
+
+  function removeFromCart(index) {
     writeCart(cart.filter((_, itemIndex) => itemIndex !== index));
   }
 
@@ -153,7 +167,10 @@
     cartCount.textContent = String(count);
     cartTotal.textContent = `$${total.toFixed(2)}`;
     emptyState.hidden = count > 0;
-    cartItems.innerHTML = "";
+    if (checkoutButton) {
+      checkoutButton.disabled = count === 0;
+    }
+    cartItems.replaceChildren();
 
     cart.forEach((item, index) => {
       const line = document.createElement("li");
@@ -169,14 +186,28 @@
       const lineTotal = document.createElement("strong");
       lineTotal.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
 
+      const decreaseButton = document.createElement("button");
+      decreaseButton.className = "cart-remove-button";
+      decreaseButton.type = "button";
+      decreaseButton.textContent = "−";
+      decreaseButton.setAttribute("aria-label", `Decrease ${getCartItemLabel(item)} quantity`);
+      decreaseButton.addEventListener("click", () => updateCartQuantity(index, -1));
+
+      const increaseButton = document.createElement("button");
+      increaseButton.className = "cart-remove-button";
+      increaseButton.type = "button";
+      increaseButton.textContent = "+";
+      increaseButton.setAttribute("aria-label", `Increase ${getCartItemLabel(item)} quantity`);
+      increaseButton.addEventListener("click", () => updateCartQuantity(index, 1));
+
       const removeButton = document.createElement("button");
-      removeButton.className = "cart-remove-button";
+      removeButton.className = "cart-remove-button cart-remove-button-wide";
       removeButton.type = "button";
       removeButton.textContent = "Remove";
-      removeButton.setAttribute("aria-label", `Remove one ${getCartItemLabel(item)} from cart`);
+      removeButton.setAttribute("aria-label", `Remove ${getCartItemLabel(item)} from cart`);
       removeButton.addEventListener("click", () => removeFromCart(index));
 
-      controls.append(lineTotal, removeButton);
+      controls.append(lineTotal, decreaseButton, increaseButton, removeButton);
       line.append(itemName, controls);
       cartItems.appendChild(line);
     });

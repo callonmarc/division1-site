@@ -66,7 +66,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.37;
+  opacity: 0.43;
 }
 
 .background-video-overlay {
@@ -672,6 +672,7 @@ body[data-page="shop"] .shop-intro-copy {
 }
 
 body[data-page="shop"] .shop-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 24px;
 }
 
@@ -728,42 +729,23 @@ body[data-page="shop"] .shirt-stage {
   min-height: 300px;
 }
 
-body[data-page="shop"] .shirt-carousel {
+body[data-page="shop"] .shirt-display {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
+  place-items: center;
   width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 115, 210, 0.8) rgba(255, 255, 255, 0.14);
+  height: 100%;
   border-radius: calc(var(--radius-sm) - 4px);
-}
-
-body[data-page="shop"] .shirt-carousel::-webkit-scrollbar {
-  height: 8px;
-}
-
-body[data-page="shop"] .shirt-carousel::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-}
-
-body[data-page="shop"] .shirt-carousel::-webkit-scrollbar-thumb {
-  background: rgba(255, 115, 210, 0.8);
-  border-radius: 999px;
+  overflow: hidden;
 }
 
 body[data-page="shop"] .shirt-image-wrap {
   position: relative;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 18rem;
+  width: min(100%, 18rem);
   min-height: 278px;
   margin: 0 auto;
-  scroll-snap-align: center;
 }
 
 body[data-page="shop"] .shirt-image-wrap::before {
@@ -831,9 +813,13 @@ body[data-page="shop"] .size-selector select {
   min-height: 40px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
+  appearance: none;
+  background:
+    linear-gradient(45deg, transparent 50%, rgba(255, 208, 238, 0.95) 50%) calc(100% - 20px) 50% / 6px 6px no-repeat,
+    linear-gradient(135deg, rgba(255, 208, 238, 0.95) 50%, transparent 50%) calc(100% - 14px) 50% / 6px 6px no-repeat,
+    rgba(255, 255, 255, 0.07);
   color: var(--text);
-  padding: 0 14px;
+  padding: 0 42px 0 14px;
   font: inherit;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -909,7 +895,9 @@ body[data-page="shop"] .cart-item-name {
 body[data-page="shop"] .cart-item-controls {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 body[data-page="shop"] .cart-remove-button {
@@ -921,9 +909,14 @@ body[data-page="shop"] .cart-remove-button {
   letter-spacing: 0.12em;
   font-size: 0.62rem;
   font-weight: 700;
+  min-width: 32px;
   padding: 5px 10px;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+body[data-page="shop"] .cart-remove-button-wide {
+  min-width: 76px;
 }
 
 body[data-page="shop"] .cart-remove-button:hover,
@@ -950,6 +943,13 @@ body[data-page="shop"] .add-to-cart-button {
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+body[data-page="shop"] .add-to-cart-button:disabled,
+body[data-page="shop"] .cart-checkout-link:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
 }
 
 body[data-page="shop"] .add-to-cart-button:hover,
@@ -999,7 +999,7 @@ body[data-page="gallery"] .gallery-grid {
 
 body[data-page="gallery"] .gallery-card {
   min-height: 0;
-  padding: 10px;
+  padding: clamp(12px, 2vw, 18px);
   border-radius: 18px;
   background: rgba(8, 8, 10, 0.58);
 }
@@ -1391,8 +1391,17 @@ body[data-page="gallery"] .gallery-card img {
 
   body[data-page="gallery"] .gallery-grid {
     width: 100%;
-    grid-auto-rows: minmax(280px, 72vw);
+    grid-auto-rows: minmax(0, auto);
     margin-top: 4px;
+  }
+
+  body[data-page="gallery"] .gallery-card {
+    aspect-ratio: 4 / 5;
+    padding: 14px;
+  }
+
+  body[data-page="gallery"] .gallery-card::before {
+    inset: 8px;
   }
 
   body[data-page="gallery"] .gallery-card:nth-child(n) {
@@ -1413,8 +1422,24 @@ body[data-page="gallery"] .gallery-card img {
     padding: 14px;
   }
 
+  body[data-page="shop"] .cart-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  body[data-page="shop"] .cart-item-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   body[data-page="shop"] .shirt-stage {
     min-height: 256px;
+    padding-inline: 8px;
+  }
+
+  body[data-page="shop"] .shirt-image-wrap {
+    width: 100%;
+    min-height: 236px;
   }
 
   body[data-page="shop"] .shirt-image {
