@@ -47,8 +47,12 @@
         <div class="cart-body">
           <p class="cart-empty" data-cart-empty>Your cart is empty.</p>
           <ul class="cart-items" data-cart-items></ul>
-          <p class="cart-total">Total: <strong data-cart-total>$0.00</strong></p>
-          <button class="cart-checkout-link" type="button" data-checkout-button>Checkout Cart</button>
+          <div class="cart-summary" aria-label="Cart totals">
+            <p>Subtotal <strong data-cart-subtotal>$0.00</strong></p>
+            <p>Shipping <strong data-cart-shipping>$0.00</strong></p>
+            <p class="cart-total">Total <strong data-cart-total>$0.00</strong></p>
+          </div>
+          <button class="cart-checkout-link" type="button" data-checkout-button>Checkout</button>
         </div>
       </section>
 
@@ -64,7 +68,7 @@
           </div>
           <div class="product-meta">
             <h2>rock &amp; roll</h2>
-            <p class="price-text">$35.00</p>
+            <p class="price-text">$35.00 <span>+ $5 shipping</span></p>
           </div>
           <label class="size-selector">
             <span>Size</span>
@@ -89,7 +93,7 @@
           </div>
           <div class="product-meta">
             <h2>no tomorrow</h2>
-            <p class="price-text">$30.00</p>
+            <p class="price-text">$35.00 <span>+ $5 shipping</span></p>
           </div>
           <label class="size-selector">
             <span>Size</span>
@@ -101,7 +105,7 @@
               <option value="XL">XL</option>
             </select>
           </label>
-          <button class="add-to-cart-button" type="button" data-add-to-cart data-name="No Tomorrow Shirt" data-price="30" data-price-id="price_1TxEJqCPoNR7hDKvkVjAPlTO">Add to cart</button>
+          <button class="add-to-cart-button" type="button" data-add-to-cart data-name="No Tomorrow Shirt" data-price="35" data-price-id="price_1TxEJqCPoNR7hDKvkVjAPlTO">Add to cart</button>
         </article>
       </section>
     </main>

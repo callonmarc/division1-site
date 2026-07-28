@@ -793,8 +793,20 @@ body[data-page="shop"] .product-meta h2 {
 }
 
 body[data-page="shop"] .price-text {
-  font-size: 0.72rem;
-  color: rgba(244, 244, 244, 0.7);
+  display: grid;
+  gap: 2px;
+  text-align: right;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+body[data-page="shop"] .price-text span {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 198, 237, 0.72);
 }
 
 
@@ -840,83 +852,146 @@ body[data-page="shop"] .size-selector option {
 }
 
 body[data-page="shop"] .cart-panel {
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  position: sticky;
+  top: 18px;
+  z-index: 12;
+  border: 1px solid rgba(255, 115, 210, 0.28);
   border-radius: var(--radius-md);
-  background: rgba(8, 8, 9, 0.72);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.32);
-  padding: 16px 18px;
+  background:
+    linear-gradient(135deg, rgba(255, 65, 190, 0.14), transparent 36%),
+    rgba(7, 7, 9, 0.86);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.38), 0 0 42px rgba(255, 54, 187, 0.08);
+  padding: 16px;
+  backdrop-filter: blur(16px);
 }
 
 body[data-page="shop"] .cart-panel-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-  margin-bottom: 10px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 body[data-page="shop"] .cart-count {
-  font-size: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 115, 210, 0.34);
+  border-radius: 999px;
+  background: rgba(255, 116, 213, 0.12);
+  font-size: 0.68rem;
+  font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(244, 244, 244, 0.72);
+  color: rgba(255, 235, 249, 0.92);
 }
 
 body[data-page="shop"] .cart-body {
   display: grid;
-  gap: 8px;
+  gap: 12px;
 }
 
 body[data-page="shop"] .cart-empty {
+  margin: 0;
+  padding: 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
   font-size: 0.84rem;
   color: rgba(244, 244, 244, 0.76);
 }
 
 body[data-page="shop"] .cart-items {
+  max-height: min(38vh, 320px);
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 8px;
+  gap: 10px;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 body[data-page="shop"] .cart-item {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
   font-size: 0.83rem;
 }
 
+body[data-page="shop"] .cart-item-details {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
 body[data-page="shop"] .cart-item-name {
-  color: rgba(244, 244, 244, 0.9);
+  overflow-wrap: anywhere;
+  color: rgba(244, 244, 244, 0.94);
+  font-weight: 800;
+}
+
+body[data-page="shop"] .cart-item-meta {
+  color: rgba(255, 198, 237, 0.66);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 body[data-page="shop"] .cart-item-controls {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: auto 34px 30px 34px;
   align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 8px;
+  justify-content: end;
+  gap: 6px;
+}
+
+body[data-page="shop"] .cart-line-total {
+  grid-column: 1 / -1;
+  justify-self: end;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+body[data-page="shop"] .cart-quantity {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  min-height: 30px;
+  color: rgba(255, 255, 255, 0.94);
+  font-weight: 800;
 }
 
 body[data-page="shop"] .cart-remove-button {
+  min-width: 34px;
+  min-height: 34px;
   border: 1px solid rgba(255, 115, 210, 0.45);
   border-radius: 999px;
   background: rgba(255, 116, 213, 0.1);
   color: rgba(255, 208, 238, 0.95);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.62rem;
-  font-weight: 700;
-  min-width: 32px;
-  padding: 5px 10px;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0 10px;
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
 body[data-page="shop"] .cart-remove-button-wide {
-  min-width: 76px;
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  min-width: 100%;
+  margin-top: 2px;
+  font-size: 0.58rem;
 }
 
 body[data-page="shop"] .cart-remove-button:hover,
@@ -926,9 +1001,26 @@ body[data-page="shop"] .cart-remove-button:focus-visible {
   border-color: rgba(255, 115, 210, 0.75);
 }
 
-body[data-page="shop"] .cart-total {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.9);
+body[data-page="shop"] .cart-summary {
+  display: grid;
+  gap: 7px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+body[data-page="shop"] .cart-summary p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  color: rgba(244, 244, 244, 0.76);
+  font-size: 0.78rem;
+}
+
+body[data-page="shop"] .cart-summary .cart-total {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 body[data-page="shop"] .add-to-cart-button {
@@ -1419,17 +1511,46 @@ body[data-page="gallery"] .gallery-card img {
   }
 
   body[data-page="shop"] .cart-panel {
-    padding: 14px;
+    position: sticky;
+    top: auto;
+    bottom: 10px;
+    order: 3;
+    padding: 12px;
+    border-radius: 18px;
+    max-height: 70dvh;
+    overflow: auto;
+  }
+
+  body[data-page="shop"] .cart-panel-header {
+    margin-bottom: 8px;
+  }
+
+  body[data-page="shop"] .cart-items {
+    max-height: 28dvh;
   }
 
   body[data-page="shop"] .cart-item {
-    align-items: flex-start;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
   }
 
   body[data-page="shop"] .cart-item-controls {
     width: 100%;
-    justify-content: space-between;
+    grid-template-columns: auto 40px 1fr 40px;
+    justify-content: stretch;
+  }
+
+  body[data-page="shop"] .cart-line-total {
+    justify-self: start;
+  }
+
+  body[data-page="shop"] .cart-remove-button {
+    min-height: 40px;
+  }
+
+  body[data-page="shop"] .cart-checkout-link {
+    min-height: 48px;
   }
 
   body[data-page="shop"] .shirt-stage {

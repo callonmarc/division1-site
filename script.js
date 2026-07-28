@@ -73,15 +73,19 @@
   }
 
   const STORAGE_KEY = "division1-cart-v1";
+  const SHIPPING_COST = 5;
+  const SHIRT_PRICE = 35;
   const addButtons = document.querySelectorAll("[data-add-to-cart]");
   const cartCount = document.querySelector("[data-cart-count]");
   const cartItems = document.querySelector("[data-cart-items]");
+  const cartSubtotal = document.querySelector("[data-cart-subtotal]");
+  const cartShipping = document.querySelector("[data-cart-shipping]");
   const cartTotal = document.querySelector("[data-cart-total]");
   const emptyState = document.querySelector("[data-cart-empty]");
   const cartToast = document.querySelector("[data-cart-toast]");
   const checkoutButton = document.querySelector("[data-checkout-button]");
 
-  if (!addButtons.length || !cartCount || !cartItems || !cartTotal || !emptyState) {
+  if (!addButtons.length || !cartCount || !cartItems || !cartSubtotal || !cartShipping || !cartTotal || !emptyState) {
     return;
   }
 
@@ -96,7 +100,7 @@
       return parsed
         .map((item) => ({
           name: String(item.name || "Shirt"),
-          price: Number(item.price) || 0,
+          price: SHIRT_PRICE,
           quantity: Math.max(1, Number.parseInt(item.quantity, 10) || 1),
           priceId: item.priceId ? String(item.priceId) : null,
           size: item.size ? String(item.size) : "",
@@ -131,12 +135,13 @@
   }
 
   function addToCart(name, price, priceId, size) {
+    const itemPrice = Number(price) || SHIRT_PRICE;
     const existing = cart.find((item) => item.name === name && item.size === size);
     if (existing) {
       existing.quantity += 1;
       if (priceId) existing.priceId = priceId;
     } else {
-      cart.push({ name, price, quantity: 1, priceId: priceId || null, size });
+      cart.push({ name, price: itemPrice, quantity: 1, priceId: priceId || null, size });
     }
     writeCart([...cart]);
     showToast(`${name} (${size}) added to cart`);
@@ -162,9 +167,13 @@
 
   function render() {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const total = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
+    const subtotal = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
+    const shipping = count > 0 ? SHIPPING_COST : 0;
+    const total = subtotal + shipping;
 
     cartCount.textContent = String(count);
+    cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+    cartShipping.textContent = count > 0 ? `$${shipping.toFixed(2)}` : "$0.00";
     cartTotal.textContent = `$${total.toFixed(2)}`;
     emptyState.hidden = count > 0;
     if (checkoutButton) {
@@ -176,14 +185,24 @@
       const line = document.createElement("li");
       line.className = "cart-item";
 
+      const itemDetails = document.createElement("div");
+      itemDetails.className = "cart-item-details";
+
       const itemName = document.createElement("span");
       itemName.className = "cart-item-name";
-      itemName.textContent = `${getCartItemLabel(item)} × ${item.quantity}`;
+      itemName.textContent = getCartItemLabel(item);
+
+      const itemMeta = document.createElement("span");
+      itemMeta.className = "cart-item-meta";
+      itemMeta.textContent = `$${item.price.toFixed(2)} each`;
+
+      itemDetails.append(itemName, itemMeta);
 
       const controls = document.createElement("div");
       controls.className = "cart-item-controls";
 
       const lineTotal = document.createElement("strong");
+      lineTotal.className = "cart-line-total";
       lineTotal.textContent = `$${(item.price * item.quantity).toFixed(2)}`;
 
       const decreaseButton = document.createElement("button");
@@ -200,6 +219,10 @@
       increaseButton.setAttribute("aria-label", `Increase ${getCartItemLabel(item)} quantity`);
       increaseButton.addEventListener("click", () => updateCartQuantity(index, 1));
 
+      const quantity = document.createElement("span");
+      quantity.className = "cart-quantity";
+      quantity.textContent = String(item.quantity);
+
       const removeButton = document.createElement("button");
       removeButton.className = "cart-remove-button cart-remove-button-wide";
       removeButton.type = "button";
@@ -207,8 +230,8 @@
       removeButton.setAttribute("aria-label", `Remove ${getCartItemLabel(item)} from cart`);
       removeButton.addEventListener("click", () => removeFromCart(index));
 
-      controls.append(lineTotal, decreaseButton, increaseButton, removeButton);
-      line.append(itemName, controls);
+      controls.append(lineTotal, decreaseButton, quantity, increaseButton, removeButton);
+      line.append(itemDetails, controls);
       cartItems.appendChild(line);
     });
   }
@@ -233,7 +256,7 @@ async function startCheckout() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ cart }),
+        body: JSON.stringify({ items: cart }),
       }
     );
 

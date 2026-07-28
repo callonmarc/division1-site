@@ -1,7 +1,8 @@
 const Stripe = require("stripe");
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const SHIPPING_RATE_ID = process.env.STRIPE_SHIPPING_RATE_ID;
+const SHIRT_PRICE_CENTS = 3500;
+const SHIPPING_PRICE_CENTS = 500;
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
@@ -10,27 +11,42 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items } = req.body || {};
+    const { items, cart } = req.body || {};
+    const cartItems = Array.isArray(items) ? items : cart;
 
-    if (!Array.isArray(items) || !items.length) {
+    if (!Array.isArray(cartItems) || !cartItems.length) {
       res.status(400).json({ error: "Cart is empty" });
       return;
     }
 
-    const lineItems = items.map((item) => ({
-      price: item.priceId,
-      quantity: Number(item.quantity) || 1,
-    }));
+    const lineItems = cartItems.map((item) => {
+      const name = String(item.name || "Division 1 Shirt");
+      const size = item.size ? ` - ${String(item.size)}` : "";
 
-    if (lineItems.some((item) => !item.price)) {
-      res.status(400).json({ error: "Missing Stripe price ID" });
-      return;
-    }
+      return {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: `${name}${size}`,
+          },
+          unit_amount: SHIRT_PRICE_CENTS,
+        },
+        quantity: Math.max(1, Number.parseInt(item.quantity, 10) || 1),
+      };
+    });
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: lineItems,
-      shipping_options: SHIPPING_RATE_ID ? [{ shipping_rate: SHIPPING_RATE_ID }] : [],
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: { amount: SHIPPING_PRICE_CENTS, currency: "usd" },
+            display_name: "Standard shipping",
+          },
+        },
+      ],
       success_url: `${req.headers.origin}/shop.html?checkout=success`,
       cancel_url: `${req.headers.origin}/shop.html?checkout=cancelled`,
       automatic_tax: { enabled: true },
