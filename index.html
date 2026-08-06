@@ -3,53 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Division 1 | Home</title>
-  <meta name="description" content="Division 1 home page with a dark minimal streetwear aesthetic and atmospheric lightning effects.">
+  <title>Division 1 OS | Entry</title>
+  <meta name="description" content="Division 1 entry page with full-screen background video and shop access.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="home">
-  <div class="background-image" aria-hidden="true"></div>
-  <div class="lightning-layer" aria-hidden="true">
-    <span class="fog-bank"></span>
-    <span class="lightning-bolt bolt-one"></span>
-    <span class="lightning-bolt bolt-two"></span>
-    <span class="lightning-bolt bolt-three"></span>
-  </div>
-  <div class="page-overlay"></div>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="index.html" aria-label="Division 1 home">
-        <img class="brand-logo" src="images/division1.jpg" alt="Division 1 logo">
-        <span class="brand-mark">Division 1</span>
-      </a>
-
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a class="is-active" href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="socials.html">Socials</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero hero-home">
-        <div class="hero-composition">
-          <img class="hero-top-image" src="images/top.png" alt="" aria-hidden="true">
-          <img class="hero-main-logo" src="images/division1.jpg" alt="Division 1 featured hero artwork">
-          <div class="hero-bottom-group">
-            <img class="hero-bottom-image" src="images/bottom.png" alt="" aria-hidden="true">
-            <div class="hero-actions">
-              <a class="button button-primary" href="shop.html">Enter Shop</a>
-              <a class="button button-secondary" href="gallery.html">View Gallery</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-  <script src="script.js" defer></script>
+  <main class="entry-screen" aria-label="Division 1 entry">
+    <video class="entry-video" src="videos/bg-vid.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <div class="entry-scanline" aria-hidden="true"></div>
+    <a class="entry-button" href="shop.html">Enter Shop</a>
+  </main>
 </body>
 </html>
