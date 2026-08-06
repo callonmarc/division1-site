@@ -10,17 +10,24 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items } = req.body || {};
+    const { items, cart } = req.body || {};
+    const checkoutItems = Array.isArray(items) ? items : cart;
 
-    if (!Array.isArray(items) || !items.length) {
+    if (!Array.isArray(checkoutItems) || !checkoutItems.length) {
       res.status(400).json({ error: "Cart is empty" });
       return;
     }
 
-    const lineItems = items.map((item) => ({
+    const lineItems = checkoutItems.map((item) => ({
       price: item.priceId,
       quantity: Number(item.quantity) || 1,
+      adjustable_quantity: { enabled: true, minimum: 1, maximum: 10 },
     }));
+
+    if (checkoutItems.some((item) => !item.size)) {
+      res.status(400).json({ error: "Select a size before checkout" });
+      return;
+    }
 
     if (lineItems.some((item) => !item.price)) {
       res.status(400).json({ error: "Missing Stripe price ID" });
@@ -30,10 +37,15 @@ module.exports = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: lineItems,
+      shipping_address_collection: { allowed_countries: ["US"] },
       shipping_options: SHIPPING_RATE_ID ? [{ shipping_rate: SHIPPING_RATE_ID }] : [],
+      phone_number_collection: { enabled: true },
       success_url: `${req.headers.origin}/shop.html?checkout=success`,
       cancel_url: `${req.headers.origin}/shop.html?checkout=cancelled`,
       automatic_tax: { enabled: true },
+      metadata: {
+        sizes: checkoutItems.map((item) => `${item.name}: ${item.size} x${Number(item.quantity) || 1}`).join(" | "),
+      },
     });
 
     res.status(200).json({ url: session.url });
