@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body data-page="shop">
   <div class="page-shell">
@@ -39,6 +40,26 @@
           <button class="cart-checkout-link" type="button" data-checkout-button>Checkout Cart</button>
         </div>
       </section>
+
+      <section class="checkout-modal" data-checkout-modal hidden>
+        <form data-shipping-form>
+          <p class="eyebrow">Shipping</p>
+          <input data-ship-name placeholder="Full name" required />
+          <input data-ship-line1 placeholder="Address" required />
+          <input data-ship-city placeholder="City" required />
+          <input data-ship-state placeholder="State" required />
+          <input data-ship-zip placeholder="ZIP" required />
+          <button type="submit">Continue to payment</button>
+        </form>
+
+        <div data-payment-section hidden>
+          <p class="eyebrow">Payment</p>
+          <div id="payment-element"></div>
+          <button type="button" data-pay-button>Pay now</button>
+          <div data-payment-message></div>
+        </div>
+      </section>
+
 
       <section class="product-grid shop-grid" aria-label="Division 1 shirt drop">
         <article class="product-card" data-product-card>
