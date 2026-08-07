@@ -180,7 +180,7 @@ shippingForm?.addEventListener("submit", async (e) => {
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Could not start payment.");
 
-    elements = stripe.elements({ clientSecret: data.clientSecret });
+    elements = stripe.elements({ clientSecret: data.clientSecret, appearance: stripeAppearance });
     const paymentElement = elements.create("payment");
     paymentElement.mount("#payment-element");
 
@@ -202,6 +202,19 @@ payButton?.addEventListener("click", async () => {
       return_url: "https://www.div1.online/success.html",
     },
   });
+
+  checkoutCancel?.addEventListener("click", () => {
+  checkoutModal.hidden = true;
+  shippingForm.hidden = false;
+  paymentSection.hidden = true;
+  shippingForm.reset();
+  paymentMessage.textContent = "";
+  if (payButton) {
+    payButton.disabled = false;
+    payButton.textContent = "Pay now";
+  }
+});
+
 
   if (error) {
     paymentMessage.textContent = error.message;
