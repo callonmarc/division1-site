@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Division 1 OS | Order Status</title>
+  <meta name="description" content="Division 1 order confirmation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body data-page="success">
+  <div class="page-shell">
+    <header class="site-header" role="banner">
+      <a class="os-title" href="shop.html" aria-label="Division 1 OS shop">Division 1 OS</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Entry</a>
+        <a href="shop.html">Shop</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="socials.html">Socials</a>
+      </nav>
+    </header>
+
+    <main class="page-main">
+      <section class="page-intro">
+        <p class="eyebrow" data-status-eyebrow>Checking order...</p>
+        <h1 data-status-heading>One sec</h1>
+        <p data-status-message>Confirming your payment with Stripe.</p>
+        <a class="button" href="shop.html" data-status-link hidden>Back to shop</a>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const STRIPE_PUBLISHABLE_KEY = "pk_live_51TO7K6CPoNR7hDKvW3UTZYabvAgOZBFedd6Ys2CeK8PNJPOmevIpFqAZmxM4OPK7GpElDqbZB3Icw0OH63dFVGye00vrfYCIfn";
+    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+
+    const eyebrow = document.querySelector("[data-status-eyebrow]");
+    const heading = document.querySelector("[data-status-heading]");
+    const message = document.querySelector("[data-status-message]");
+    const link = document.querySelector("[data-status-link]");
+
+    function setStatus(eyebrowText, headingText, messageText) {
+      eyebrow.textContent = eyebrowText;
+      heading.textContent = headingText;
+      message.textContent = messageText;
+      link.hidden = false;
+    }
+
+    const clientSecret = new URLSearchParams(window.location.search).get("payment_intent_client_secret");
+
+    if (!clientSecret) {
+      setStatus("Order Status", "Nothing to show", "We couldn't find a payment to confirm.");
+    } else {
+      stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+        switch (paymentIntent?.status) {
+          case "succeeded":
+            setStatus("Order Confirmed", "You're all set", "Payment received — thanks for the order. A confirmation will follow by email.");
+            window.localStorage.removeItem("division1-cart-v2");
+            break;
+          case "processing":
+            setStatus("Order Processing", "Almost there", "Your payment is processing. We'll update you once it's confirmed.");
+            break;
+          case "requires_payment_method":
+            setStatus("Payment Failed", "Something went wrong", "Your payment wasn't successful. Please try again.");
+            break;
+          default:
+            setStatus("Order Status", "Status unknown", "We couldn't confirm your payment status. Contact us if you were charged.");
+            break;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
