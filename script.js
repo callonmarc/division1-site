@@ -12,6 +12,16 @@
   const emptyState = document.querySelector("[data-cart-empty]");
   const cartToast = document.querySelector("[data-cart-toast]");
   const checkoutButton = document.querySelector("[data-checkout-button]");
+  const STRIPE_PUBLISHABLE_KEY = "pk_live_51TO7K6CPoNR7hDKvW3UTZYabvAgOZBFedd6Ys2CeK8PNJPOmevIpFqAZmxM4OPK7GpElDqbZB3Icw0OH63dFVGye00vrfYCIfn"; 
+const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+let elements;
+
+const checkoutModal = document.querySelector("[data-checkout-modal]");
+const shippingForm = document.querySelector("[data-shipping-form]");
+const paymentSection = document.querySelector("[data-payment-section]");
+const payButton = document.querySelector("[data-pay-button]");
+const paymentMessage = document.querySelector("[data-payment-message]");
+
 
   if (!addButtons.length || !cartCount || !cartItems || !cartTotal || !emptyState) {
     return;
@@ -117,41 +127,71 @@
     });
   }
 
-  async function startCheckout() {
-    if (!cart.length) {
-      showToast("Add a shirt and size first");
-      return;
-    }
-
-    if (cart.some((item) => !item.size)) {
-      showToast("Every item needs a size before checkout");
-      return;
-    }
-
-    if (checkoutButton) {
-      checkoutButton.disabled = true;
-      checkoutButton.textContent = "Opening checkout...";
-    }
-
-    try {
-      const response = await fetch("https://div1-backend.vercel.app/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: cart, cart }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Checkout failed.");
-      window.location.href = data.url;
-    } catch (error) {
-      console.error(error);
-      showToast("Checkout failed. Check backend shipping setup.");
-      if (checkoutButton) {
-        checkoutButton.disabled = false;
-        checkoutButton.textContent = "Checkout Cart";
-      }
-    }
+ async function startCheckout() {
+  if (!cart.length) {
+    showToast("Add a shirt and size first");
+    return;
   }
+  if (cart.some((item) => !item.size)) {
+    showToast("Every item needs a size before checkout");
+    return;
+  }
+  checkoutModal.hidden = false;
+}
+
+shippingForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const shippingAddress = {
+    name: document.querySelector("[data-ship-name]").value,
+    line1: document.querySelector("[data-ship-line1]").value,
+    city: document.querySelector("[data-ship-city]").value,
+    state: document.querySelector("[data-ship-state]").value,
+    postal_code: document.querySelector("[data-ship-zip]").value,
+    country: "US",
+  };
+
+  try {
+    const response = await fetch("https://div1-backend.vercel.app/api/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cart, shippingAddress }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "Could not start payment.");
+
+    elements = stripe.elements({ clientSecret: data.clientSecret });
+    const paymentElement = elements.create("payment");
+    paymentElement.mount("#payment-element");
+
+    shippingForm.hidden = true;
+    paymentSection.hidden = false;
+  } catch (error) {
+    console.error(error);
+    showToast("Could not start checkout.");
+  }
+});
+
+payButton?.addEventListener("click", async () => {
+  payButton.disabled = true;
+  payButton.textContent = "Processing...";
+
+  const { error } = await stripe.confirmPayment({
+    elements,
+    confirmParams: {
+      return_url: "https://www.div1.online/success.html",
+    },
+  });
+
+  if (error) {
+    paymentMessage.textContent = error.message;
+    payButton.disabled = false;
+    payButton.textContent = "Pay now";
+  }
+  // on success, Stripe redirects to return_url automatically
+});
+
 
   addButtons.forEach((button) => {
     button.addEventListener("click", () => {
