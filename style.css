@@ -146,6 +146,80 @@ p { line-height: 1.6; }
 .cart-remove-button-wide { display: none; }
 .cart-total { font-weight: 700; }
 .cart-toast { position: fixed; right: 14px; bottom: 14px; z-index: 10; max-width: min(320px, calc(100vw - 28px)); padding: 10px 12px; border: 2px solid var(--line); background: var(--black); color: var(--white); opacity: 0; transform: translateY(10px); transition: .2s ease; }
+.checkout-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(5, 5, 5, 0.75);
+}
+.checkout-modal[hidden] { display: none; }
+
+.checkout-cancel {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 2px solid var(--white);
+  background: rgba(0, 0, 0, .72);
+  color: var(--white);
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.checkout-cancel:hover { background: var(--white); color: var(--black); }
+
+[data-shipping-form],
+[data-payment-section] {
+  width: min(420px, 100%);
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border: 2px solid var(--line);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+[data-shipping-form] input {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 2px solid var(--line);
+  background: var(--white);
+  color: var(--black);
+  border-radius: 0;
+}
+[data-shipping-form] input:focus,
+[data-shipping-form] input:focus-visible {
+  outline: none;
+  background: var(--gray);
+}
+
+[data-shipping-form] button,
+[data-pay-button] {
+  min-height: 38px;
+  border: 2px solid var(--line);
+  background: var(--white);
+  color: var(--black);
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--black);
+}
+[data-shipping-form] button:hover,
+[data-pay-button]:hover { background: var(--black); color: var(--white); }
+[data-pay-button]:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+
+#payment-element { margin: 6px 0; }
+
+[data-payment-message] {
+  font-size: .78rem;
+  font-weight: 700;
+  color: #b00000;
+}
+
 .cart-toast.is-visible { opacity: 1; transform: translateY(0); }
 
 .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
