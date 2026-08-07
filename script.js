@@ -21,6 +21,25 @@ const shippingForm = document.querySelector("[data-shipping-form]");
 const paymentSection = document.querySelector("[data-payment-section]");
 const payButton = document.querySelector("[data-pay-button]");
 const paymentMessage = document.querySelector("[data-payment-message]");
+ const checkoutCancel = document.querySelector("[data-checkout-cancel]");
+
+  const stripeAppearance = {
+    theme: "flat",
+    variables: {
+      colorPrimary: "#050505",
+      colorBackground: "#f8f8f8",
+      colorText: "#050505",
+      colorDanger: "#b00000",
+      fontFamily: '"IBM Plex Mono", "Courier New", monospace',
+      borderRadius: "0px",
+      spacingUnit: "4px",
+    },
+    rules: {
+      ".Input": { border: "2px solid #050505", boxShadow: "none" },
+      ".Label": { fontWeight: "700", textTransform: "uppercase", fontSize: "12px" },
+    },
+  };
+
 
 
   if (!addButtons.length || !cartCount || !cartItems || !cartTotal || !emptyState) {
